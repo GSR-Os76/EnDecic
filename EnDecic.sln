@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic", "EnDecic\EnDecic.csproj", "{3303F112-4AD8-4AE1-A143-462B6C16EA4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilic", "Utilic\Utilic.csproj", "{CC010B53-499B-481D-A229-4915B45BEAF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3303F112-4AD8-4AE1-A143-462B6C16EA4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3303F112-4AD8-4AE1-A143-462B6C16EA4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3303F112-4AD8-4AE1-A143-462B6C16EA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3303F112-4AD8-4AE1-A143-462B6C16EA4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC010B53-499B-481D-A229-4915B45BEAF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC010B53-499B-481D-A229-4915B45BEAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC010B53-499B-481D-A229-4915B45BEAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC010B53-499B-481D-A229-4915B45BEAF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {548CEF22-FCDF-4F80-A320-965BC010C035}
+	EndGlobalSection
+EndGlobal
