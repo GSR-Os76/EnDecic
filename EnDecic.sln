@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic", "EnDecic\EnDecic.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilic", "Utilic\Utilic.csproj", "{CC010B53-499B-481D-A229-4915B45BEAF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic_Jsonic", "EnDecic_Jsonic\EnDecic_Jsonic.csproj", "{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CC010B53-499B-481D-A229-4915B45BEAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC010B53-499B-481D-A229-4915B45BEAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC010B53-499B-481D-A229-4915B45BEAF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

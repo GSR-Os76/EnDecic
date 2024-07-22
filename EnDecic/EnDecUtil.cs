@@ -6,6 +6,7 @@ namespace GSR.EnDecic
 {
     public static class EnDecUtil
     {
+        // Asymmetric codecs and mapping for them both. 
         public static IEnDec<T> Map<T, F>(this IEnDec<F> from, Func<T, F> encoder, Func<F, T> decoder) => new MappedEnDec<T, F>(from, encoder, decoder);
 
         public static IEnDec<IList<T>> ListOf<T>(this IEnDec<T> type, int fixedLength = -1) => new ListEnDec<T>(type, fixedLength);
