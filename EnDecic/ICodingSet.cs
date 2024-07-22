@@ -26,7 +26,7 @@ namespace GSR.EnDecic
         public long DecodeInt64(T stream);
         public string DecodeString(T stream);
         public bool DecodeBoolean(T stream);
-        public IList<U> DecodeList<U>(T stream, IDecoder<U> elementTypeDecoder);
+        public IList<U> DecodeList<U>(T stream, IDecoder<U> elementTypeDecoder, int length);
         public IOrderedDictionary<string, U> DecodeMap<U>(T stream, IDecoder<U> elementTypeDecoder, string[] keys);
         public U? DecodeNullable<U>(T stream, IDecoder<U> elementTypeDecoder);
 
