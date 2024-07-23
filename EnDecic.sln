@@ -9,6 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilic", "Utilic\Utilic.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic_Jsonic", "EnDecic_Jsonic\EnDecic_Jsonic.csproj", "{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilicTests", "UtilicTests\UtilicTests.csproj", "{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic_JsonicTests", "EnDecic_JsonicTests\EnDecic_JsonicTests.csproj", "{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependecies", "Dependecies", "{244E2402-069E-4F44-8595-65CC67F16A2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jsonic", "Jsonic", "{04C2B30A-0C41-4F72-9B9F-8E3846BEA7A9}"
+	ProjectSection(SolutionItems) = preProject
+		..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.deps.json = ..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.deps.json
+		..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.dll = ..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.dll
+		..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.pdb = ..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.pdb
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +40,20 @@ Global
 		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{04C2B30A-0C41-4F72-9B9F-8E3846BEA7A9} = {244E2402-069E-4F44-8595-65CC67F16A2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {548CEF22-FCDF-4F80-A320-965BC010C035}

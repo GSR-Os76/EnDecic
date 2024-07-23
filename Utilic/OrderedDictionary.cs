@@ -5,7 +5,7 @@ namespace GSR.Utilic.Generic
 {
     public class OrderedDictionary<TKey, TValue> : IOrderedDictionary<TKey, TValue>
     {
-        private readonly List<KeyValuePair<TKey, TValue>> _entries = new();
+        protected readonly List<KeyValuePair<TKey, TValue>> _entries = new();
 
 
 
@@ -40,7 +40,7 @@ namespace GSR.Utilic.Generic
         public OrderedDictionary(IEnumerable<KeyValuePair<TKey, TValue>> entries)
         {
             if (entries.Select((x) => x.Key).AnyRepeats())
-                throw new ArgumentException("Entries most be uniquely keyed");
+                throw new ArgumentException("Entries must be uniquely keyed");
 
             entries.ForEach((x) => _entries.Add(x));
         } // end constructor

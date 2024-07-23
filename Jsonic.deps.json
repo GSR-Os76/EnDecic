@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Jsonic/2.0.1.0": {
+        "runtime": {
+          "Jsonic.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Jsonic/2.0.1.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

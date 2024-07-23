@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Reference Include="Jsonic">
-      <HintPath>..\..\..\..\Desktop\Apps and Libs\libs\Jsonic-2.0.1.0.dll</HintPath>
+      <HintPath>..\Jsonic.dll</HintPath>
     </Reference>
   </ItemGroup>
 
