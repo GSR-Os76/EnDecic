@@ -5,6 +5,7 @@ namespace GSR.Tests.Utilic.Generic
     [TestClass]
     public class TestIEnumerableExtensions
     {
+
 #warning runner showing only two tests in this TestAnyRepeats() group
         [TestMethod]
         [DataRow(new object?[] { 0, 1, 2 }, false)]

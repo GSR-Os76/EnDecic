@@ -22,6 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jsonic", "Jsonic", "{04C2B3
 		..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.pdb = ..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.pdb
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic_ByteStream", "Endecic_ByteStream\EnDecic_ByteStream.csproj", "{1F4301DC-C40C-431C-BB1E-501FC3FC0A33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic_ByteStreamTests", "EnDecic_ByteStreamTests\EnDecic_ByteStreamTests.csproj", "{F84B2F02-6BC5-4AC9-B5EF-34B4EF22E9BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +52,14 @@ Global
 		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4301DC-C40C-431C-BB1E-501FC3FC0A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4301DC-C40C-431C-BB1E-501FC3FC0A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4301DC-C40C-431C-BB1E-501FC3FC0A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4301DC-C40C-431C-BB1E-501FC3FC0A33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F84B2F02-6BC5-4AC9-B5EF-34B4EF22E9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F84B2F02-6BC5-4AC9-B5EF-34B4EF22E9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F84B2F02-6BC5-4AC9-B5EF-34B4EF22E9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F84B2F02-6BC5-4AC9-B5EF-34B4EF22E9BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,7 +12,7 @@ namespace GSR.Utilic.Generic
         public TValue this[TKey key]
         {
             get => _entries.First((x) => x.Key?.Equals(key) ?? throw new ArgumentNullException("key can not be null")).Value;
-            set 
+            set
             {
                 if (ContainsKey(key))
                     Insert(IndexOf(_entries.First((x) => x.Key?.Equals(key) ?? throw new ArgumentNullException())), KeyValuePair.Create(key, value));
@@ -71,7 +71,7 @@ namespace GSR.Utilic.Generic
 
         public int IndexOf(KeyValuePair<TKey, TValue> item) => _entries.IndexOf(item);
 
-        public void Insert(int index, KeyValuePair<TKey, TValue> item) 
+        public void Insert(int index, KeyValuePair<TKey, TValue> item)
         {
             for (int i = 0; i < _entries.Count; i++)
                 if (i != index && (item.Key?.Equals(_entries[i].Key) ?? throw new ArgumentNullException()))

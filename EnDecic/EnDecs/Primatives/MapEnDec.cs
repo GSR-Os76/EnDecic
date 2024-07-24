@@ -1,4 +1,5 @@
-﻿using GSR.Utilic.Generic;
+﻿
+using GSR.Utilic.Generic;
 
 namespace GSR.EnDecic.Implementations.Primatives
 {
