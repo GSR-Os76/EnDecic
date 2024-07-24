@@ -10,8 +10,7 @@ namespace GSR.EnDecic.Implementations.Primatives
         public static readonly IEnDec<short> INT_16 = new Int16EnDec();
         public static readonly IEnDec<int> INT_32 = new Int32EnDec();
         public static readonly IEnDec<long> INT_64 = new Int64EnDec();
-#warning rename as single for consistency
-        public static readonly IEnDec<float> FLOAT = new FloatEnDec();
+        public static readonly IEnDec<float> SINGLE = new FloatEnDec();
         public static readonly IEnDec<double> DOUBLE = new DoubleEnDec();
         public static readonly IEnDec<decimal> DECIMAL = new DecimalEnDec();
         public static readonly IEnDec<string> STRING = new StringEnDec();

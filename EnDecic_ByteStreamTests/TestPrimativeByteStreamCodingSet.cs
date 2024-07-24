@@ -73,7 +73,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow(float.MaxValue)]
         public void TestFloatInterconversion(float value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.FLOAT, value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.SINGLE, value));
         } // end TestFloatInterconversion()
 
         [TestMethod]

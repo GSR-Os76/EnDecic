@@ -13,7 +13,7 @@ namespace GSR.EnDecic
         public T EncodeInt16(short data);
         public T EncodeInt32(int data);
         public T EncodeInt64(long data);
-        public T EncodeFloat(float data);
+        public T EncodeSingle(float data);
         public T EncodeDouble(double data);
         public T EncodeDecimal(decimal data);
         public T EncodeString(string data);
@@ -28,7 +28,7 @@ namespace GSR.EnDecic
         public short DecodeInt16(T stream);
         public int DecodeInt32(T stream);
         public long DecodeInt64(T stream);
-        public float DecodeFloat(T stream);
+        public float DecodeSingle(T stream);
         public double DecodeDouble(T stream);
         public decimal DecodeDecimal(T stream);
         public string DecodeString(T stream);

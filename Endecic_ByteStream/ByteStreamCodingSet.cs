@@ -29,7 +29,7 @@ namespace GSR.EnDecic.ByteStream
 
         public double DecodeDouble(IQueue<byte> stream) => BitConverter.ToDouble(stream.Dequeue(8), 0);
 
-        public float DecodeFloat(IQueue<byte> stream) => BitConverter.ToSingle(stream.Dequeue(4), 0);
+        public float DecodeSingle(IQueue<byte> stream) => BitConverter.ToSingle(stream.Dequeue(4), 0);
 
         public short DecodeInt16(IQueue<byte> stream) => BitConverter.ToInt16(stream.Dequeue(2), 0);
 
@@ -66,7 +66,7 @@ namespace GSR.EnDecic.ByteStream
 
         public IQueue<byte> EncodeDouble(double data) => new Utilic.Generic.Queue<byte>().Enqueue(BitConverter.GetBytes(data));
 
-        public IQueue<byte> EncodeFloat(float data) => new Utilic.Generic.Queue<byte>().Enqueue(BitConverter.GetBytes(data));
+        public IQueue<byte> EncodeSingle(float data) => new Utilic.Generic.Queue<byte>().Enqueue(BitConverter.GetBytes(data));
 
         public IQueue<byte> EncodeInt16(short data) => new Utilic.Generic.Queue<byte>().Enqueue(BitConverter.GetBytes(data));
 

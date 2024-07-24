@@ -18,7 +18,7 @@ namespace GSR.EnDecic.Jsonic
 
         public double DecodeDouble(JsonElement stream) => stream.AsNumber().AsDouble();
 
-        public float DecodeFloat(JsonElement stream) => stream.AsNumber().AsFloat();
+        public float DecodeSingle(JsonElement stream) => stream.AsNumber().AsFloat();
 
         public short DecodeInt16(JsonElement stream) => stream.AsNumber().AsShort();
 
@@ -44,7 +44,7 @@ namespace GSR.EnDecic.Jsonic
 
         public JsonElement EncodeDouble(double data) => new(data);
 
-        public JsonElement EncodeFloat(float data) => new(data);
+        public JsonElement EncodeSingle(float data) => new(data);
 
         public JsonElement EncodeInt16(short data) => new(data);
 
