@@ -45,6 +45,8 @@ namespace GSR.Utilic.Generic
             entries.ForEach((x) => _entries.Add(x));
         } // end constructor
 
+        public OrderedDictionary() { } // end constructor
+
 
 
         public void Add(TKey key, TValue value) => Add(KeyValuePair.Create(key, value));
