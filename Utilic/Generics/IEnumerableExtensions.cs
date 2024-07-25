@@ -2,6 +2,11 @@
 {
     public static class IEnumerableExtensions
     {
+        public static IEnumerable<T?> XTimes<T>(this int times, T? value = default)
+        {
+            for (int i = 0; i < times; i++)
+                yield return value;
+        } // end XTimes()
 
         public static bool AnyRepeats<T>(this IEnumerable<T?> values)
         {

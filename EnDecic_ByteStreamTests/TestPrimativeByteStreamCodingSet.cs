@@ -90,6 +90,27 @@ namespace GSR.Tests.EnDecic.ByteStream
         } // end TestDoubleInterconversion()
 
         [TestMethod]
+        [DataRow(0)]
+        [DataRow(1)]
+        [DataRow(2)]
+        [DataRow(3)]
+        [DataRow(4)]
+        [DataRow(5)]
+        [DataRow(6)]
+        public void TestDecimalInterconversion(int index)
+        {
+            decimal[] values = new decimal[] { 
+                decimal.MinValue, 
+                (decimal)-23589, 
+                (decimal)-394923.43243, 
+                (decimal)0, 
+                (decimal)432432.984715, 
+                (decimal)086503, 
+                decimal.MaxValue };
+            Assert.AreEqual(values[index], EncodeThenDecodeBS(PrimativeEnDecs.DECIMAL, values[index]));
+        } // end TestDoubleInterconversion()
+
+        [TestMethod]
         [DataRow("")]
         [DataRow("a")]
         [DataRow("_34jkc")]
@@ -103,6 +124,44 @@ namespace GSR.Tests.EnDecic.ByteStream
         {
             Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.STRING, value));
         } // end TestStringInterconversion()
+
+
+        [TestMethod]
+        [DataRow("")]
+        [DataRow("a")]
+        [DataRow("_34jkc")]
+        [DataRow(" \r\t__32ou, ``~")]
+        [DataRow("𒀣")]
+        [DataRow("𒀣𓆉u")]
+        [DataRow("व")]
+        [DataRow(null)]
+        [DataRow("ফव")]
+        [DataRow("𒀣uव𓆉")]
+        [DataRow(null)]
+        public void TestNullableStringInterconversion(string? value) 
+        {
+            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.STRING.NullableOf(), value));
+        } // end TestNullableStringInterconversion()
+
+        [TestMethod]
+        [DataRow("")]
+        [DataRow("a")]
+        [DataRow("_34jkc")]
+        [DataRow(" \r\t__32ou, ``~")]
+        [DataRow("𒀣")]
+        [DataRow("𒀣𓆉u")]
+        [DataRow("व")]
+        [DataRow("ফव")]
+        [DataRow("𒀣uव𓆉")]
+        [DataRow()]
+        [DataRow("𒀣uव𓆉", "", "4k", "et54r7")]
+        public void TestListStringInterconversion(params string[] value)
+        {
+            string[] ar = EncodeThenDecodeBS(PrimativeEnDecs.STRING.ListOf(), value).ToArray();
+            Assert.AreEqual(value.Length, ar.Length);
+            for (int i = 0; i < ar.Length; i++)
+                Assert.AreEqual(value[i], ar[i]);
+        } // end TestListStringInterconversion()
 
     } // end class
 } // end namespace

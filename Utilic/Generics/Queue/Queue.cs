@@ -12,7 +12,7 @@ namespace GSR.Utilic.Generic
 
         public T Dequeue() => _queue.Dequeue();
 
-        public T[] Dequeue(int count) => count == 0 ? Array.Empty<T>() : count.FactorialFactors().Select((i) => Dequeue()).ToArray();
+        public T[] Dequeue(int count) => count.XTimes<object>().Select((i) => Dequeue()).ToArray();
 
         public IQueue<T> Enqueue(T item)
         {

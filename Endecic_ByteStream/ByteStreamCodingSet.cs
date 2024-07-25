@@ -1,5 +1,4 @@
 ﻿using GSR.Utilic.Generic;
-using GSR.Utilic.Math;
 using System.Collections.Immutable;
 using System.Text;
 
@@ -20,12 +19,11 @@ namespace GSR.EnDecic.ByteStream
 
         public byte DecodeByte(IQueue<byte> stream) => stream.Dequeue();
 
-        public decimal DecodeDecimal(IQueue<byte> stream) => throw new NotImplementedException();/*new decimal(
+        public decimal DecodeDecimal(IQueue<byte> stream) => new decimal(new int[] {
             BitConverter.ToInt32(stream.Dequeue(4), 0),
             BitConverter.ToInt32(stream.Dequeue(4), 0),
             BitConverter.ToInt32(stream.Dequeue(4), 0),
-            sign,
-            value);*/
+            BitConverter.ToInt32(stream.Dequeue(4), 0)});
 
         public double DecodeDouble(IQueue<byte> stream) => BitConverter.ToDouble(stream.Dequeue(8), 0);
 
@@ -37,7 +35,7 @@ namespace GSR.EnDecic.ByteStream
 
         public long DecodeInt64(IQueue<byte> stream) => BitConverter.ToInt64(stream.Dequeue(8), 0);
 
-        public IList<U> DecodeList<U>(IQueue<byte> stream, IDecoder<U> elementTypeDecoder) => DecodeInt32(stream).FactorialFactors().Select((i) => elementTypeDecoder.Decode(this, stream)).ToImmutableList();
+        public IList<U> DecodeList<U>(IQueue<byte> stream, IDecoder<U> elementTypeDecoder) => DecodeInt32(stream).XTimes<object>().Select((x) => elementTypeDecoder.Decode(this, stream)).ToImmutableList();
 
         public IOrderedDictionary<string, U> DecodeMap<U>(IQueue<byte> stream, IDecoder<U> elementTypeDecoder)
         {
@@ -50,19 +48,11 @@ namespace GSR.EnDecic.ByteStream
 
 
 
-        public IQueue<byte> EncodeBoolean(bool data)
-        {
-            IQueue<byte> q = new Utilic.Generic.Queue<byte>();
-            q.Enqueue(data ? (byte)1 : (byte)0);
-            return q;
-        } // end EncodeBoolean()
+        public IQueue<byte> EncodeBoolean(bool data) => new Utilic.Generic.Queue<byte>().Enqueue(data ? (byte)1 : (byte)0);
 
         public IQueue<byte> EncodeByte(byte data) => new Utilic.Generic.Queue<byte>().Enqueue(data);
 
-        public IQueue<byte> EncodeDecimal(decimal data)
-        {
-            throw new NotImplementedException();
-        } // end EncodeDecimal()
+        public IQueue<byte> EncodeDecimal(decimal data) => decimal.GetBits(data).Aggregate((IQueue<byte>)new Utilic.Generic.Queue<byte>(), (seed, x) => seed.Enqueue(BitConverter.GetBytes(x)));
 
         public IQueue<byte> EncodeDouble(double data) => new Utilic.Generic.Queue<byte>().Enqueue(BitConverter.GetBytes(data));
 

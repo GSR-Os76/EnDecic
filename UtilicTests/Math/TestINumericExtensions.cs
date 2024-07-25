@@ -9,7 +9,7 @@ namespace GSR.Tests.Utilic.Math
         [DataRow(1, new int[] { 1 })]
         [DataRow(2, new int[] { 1, 2 })]
         [DataRow(3, new int[] { 1, 2, 3 })]
-        [DataRow(3, new int[] { 1, 2, 3, 4, 5, 6 })]
+        [DataRow(6, new int[] { 1, 2, 3, 4, 5, 6 })]
         public void TestFactorialFactorsValid(int f, int[] expectations)
         {
             int[] ar = f.FactorialFactors().ToArray();
