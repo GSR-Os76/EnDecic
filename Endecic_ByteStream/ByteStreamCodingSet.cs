@@ -37,7 +37,7 @@ namespace GSR.EnDecic.ByteStream
 
         public IList<U> DecodeList<U>(IQueue<byte> stream, IDecoder<U> elementTypeDecoder) => DecodeInt32(stream).XTimes<object>().Select((x) => elementTypeDecoder.Decode(this, stream)).ToImmutableList();
 
-        public IOrderedDictionary<string, U> DecodeMap<U>(IQueue<byte> stream, IDecoder<U> elementTypeDecoder)
+        public IOrderedDictionary<K, V> DecodeMap<K, V>(IQueue<byte> stream, IDecoder<K> keyTypeDecoder, IDecoder<V> valueTypeDecoder)
         {
             throw new NotImplementedException();
         }
@@ -64,21 +64,21 @@ namespace GSR.EnDecic.ByteStream
 
         public IQueue<byte> EncodeInt64(long data) => new Utilic.Generic.Queue<byte>().Enqueue(BitConverter.GetBytes(data));
 
-        public IQueue<byte> EncodeList<U>(IList<U> data, IEncoder<U> elementTypeEncoder)
+        public IQueue<byte> EncodeList<U>(IList<U> data, IEncoder<U> elementEncoder)
         {
             IQueue<byte> q = EncodeInt32(data.Count);
             foreach (U u in data)
-                q.Enqueue(elementTypeEncoder.Encode(this, u).DequeueAll());
+                q.Enqueue(elementEncoder.Encode(this, u).DequeueAll());
 
             return q;
         } // end EncodeList()
 
-        public IQueue<byte> EncodeMap<U>(IOrderedDictionary<string, U> data, IEncoder<U> elementTypeEncoder)
+        public IQueue<byte> EncodeMap<K, V>(IOrderedDictionary<K, V> data, IEncoder<K> keyEncoder, IEncoder<V> valueEncoder)
         {
             throw new NotImplementedException();
         }
 
-        public IQueue<byte> EncodeNullable<U>(U? data, IEncoder<U> elementTypeEncoder) => data is not null ? EncodeBoolean(true).Enqueue(elementTypeEncoder.Encode(this, data).DequeueAll()) : EncodeBoolean(false);
+        public IQueue<byte> EncodeNullable<U>(U? data, IEncoder<U> elementEncoder) => data is not null ? EncodeBoolean(true).Enqueue(elementEncoder.Encode(this, data).DequeueAll()) : EncodeBoolean(false);
 
         public IQueue<byte> EncodeString(string data)
         {

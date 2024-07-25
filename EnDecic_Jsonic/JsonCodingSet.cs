@@ -26,11 +26,12 @@ namespace GSR.EnDecic.Jsonic
 
         public long DecodeInt64(JsonElement stream) => stream.AsNumber().AsLong();
 
-        public IList<U> DecodeList<U>(JsonElement stream, IDecoder<U> elementTypeDecoder) => stream.AsArray().Select((x) => elementTypeDecoder.Decode(this, x)).ToImmutableList();
+        public IList<U> DecodeList<U>(JsonElement stream, IDecoder<U> elementDecoder) => stream.AsArray().Select((x) => elementDecoder.Decode(this, x)).ToImmutableList();
 
-        public IOrderedDictionary<string, U> DecodeMap<U>(JsonElement stream, IDecoder<U> elementTypeDecoder) => new ImmutableOrderedDictionary<string, U>(stream.AsObject().GetKeySet().Select((x) => KeyValuePair.Create(x.Value, elementTypeDecoder.Decode(this, stream.AsObject()[x])))); 
+        public IOrderedDictionary<K, V> DecodeMap<K, V>(JsonElement stream, IDecoder<K> keyDecoder, IDecoder<V> elementDecoder) 
+            => new ImmutableOrderedDictionary<K, V>(stream.AsObject().GetKeySet().Select((x) => KeyValuePair.Create(keyDecoder.Decode(this, JsonElement.ParseJson(x.ToUnescapedString())), elementDecoder.Decode(this, stream.AsObject()[x])))); 
 
-        public U? DecodeNullable<U>(JsonElement stream, IDecoder<U> elementTypeDecoder) => stream.Type == JsonType.Null ? default : elementTypeDecoder.Decode(this, stream);
+        public U? DecodeNullable<U>(JsonElement stream, IDecoder<U> elementDecoder) => stream.Type == JsonType.Null ? default : elementDecoder.Decode(this, stream);
 
         public string DecodeString(JsonElement stream) => stream.AsString().Value;
 
@@ -52,11 +53,16 @@ namespace GSR.EnDecic.Jsonic
 
         public JsonElement EncodeInt64(long data) => new(data);
 
-        public JsonElement EncodeList<U>(IList<U> data, IEncoder<U> elementTypeEncoder) => new(new JsonArray(data.Select((x) => elementTypeEncoder.Encode(this, x)).ToArray()));
+        public JsonElement EncodeList<U>(IList<U> data, IEncoder<U> elementEncoder) => new(new JsonArray(data.Select((x) => elementEncoder.Encode(this, x)).ToArray()));
 
-        public JsonElement EncodeMap<U>(IOrderedDictionary<string, U> data, IEncoder<U> elementTypeEncoder) => new(data.Aggregate(new JsonObject(), (seed, x) => seed.Add(x.Key, elementTypeEncoder.Encode(this, x.Value))));
+        public JsonElement EncodeMap<K, V>(IOrderedDictionary<K, V> data, IEncoder<K> keyEncoder, IEncoder<V> valueEncoder) 
+            => new(data
+                .Select((x) => Tuple.Create(keyEncoder.Encode(this, x.Key), valueEncoder.Encode(this, x.Value))) // map to the encoded kvp
+                .Aggregate(new JsonObject(), (seed, x) => seed.Add( // add kvp to a JsonObject
+                    x.Item1.Type == JsonType.String ? x.Item1.AsString() : JsonString.FromUnescapedString(x.Item1.ToCompressedString()), // if key is string use directly as the key, else create json string holding the json for the encoded object.
+                    x.Item2)));
 
-        public JsonElement EncodeNullable<U>(U? data, IEncoder<U> elementTypeEncoder) => data is null ? new() : elementTypeEncoder.Encode(this, data);
+        public JsonElement EncodeNullable<U>(U? data, IEncoder<U> elementEncoder) => data is null ? new() : elementEncoder.Encode(this, data);
 
         public JsonElement EncodeString(string data) => new(data);
 

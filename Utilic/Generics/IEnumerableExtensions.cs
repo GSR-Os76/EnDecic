@@ -15,8 +15,8 @@
                 for (int j = 0; j < array.Length; j++)
                     if (j != i
                         && (
-                            array[i] is null && array[j] is null
-                            || array[i] is not null && array[i].Equals(array[j])
+                            (array[i] is null && array[j] is null)
+                            || (array[i] is not null && array[i].Equals(array[j])) // how is this possibly dereference of null? we checked it directly proceeding
                             ))
                         return true;
 

@@ -13,8 +13,8 @@ namespace GSR.EnDecic
         public T EncodeDouble(double data);
         public T EncodeDecimal(decimal data);
         public T EncodeString(string data);
-        public T EncodeList<U>(IList<U> data, IEncoder<U> elementTypeEncoder);
-        public T EncodeMap<U>(IOrderedDictionary<string, U> data, IEncoder<U> elementTypeEncoder);
-        public T EncodeNullable<U>(U? data, IEncoder<U> elementTypeEncoder);
+        public T EncodeList<U>(IList<U> data, IEncoder<U> elementEncoder);
+        public T EncodeMap<K, V>(IOrderedDictionary<K, V> data, IEncoder<K> keyEncoder, IEncoder<V> valueEncoder);
+        public T EncodeNullable<U>(U? data, IEncoder<U> elementEncoder);
     } // end interface
 } // end namespace

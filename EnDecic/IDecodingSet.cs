@@ -13,9 +13,8 @@ namespace GSR.EnDecic
         public double DecodeDouble(T stream);
         public decimal DecodeDecimal(T stream);
         public string DecodeString(T stream);
-        public IList<U> DecodeList<U>(T stream, IDecoder<U> elementTypeDecoder);
-#warning make map key possibly of any type. vaguely related create fixed key EnDec that doesn't write the key, just the values and recorrelates them based on order.
-        public IOrderedDictionary<string, U> DecodeMap<U>(T stream, IDecoder<U> elementTypeDecoder);
-        public U? DecodeNullable<U>(T stream, IDecoder<U> elementTypeDecoder);
+        public IList<U> DecodeList<U>(T stream, IDecoder<U> elementDecoder);
+        public IOrderedDictionary<K,V> DecodeMap<K, V>(T stream, IDecoder<K> keyDecoder, IDecoder<V> valueDecoder);
+        public U? DecodeNullable<U>(T stream, IDecoder<U> elementDecoder);
     } // end interface
 } // end namespace

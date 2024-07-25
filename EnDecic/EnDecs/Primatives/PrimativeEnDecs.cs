@@ -1,5 +1,4 @@
-﻿
-using GSR.Utilic.Generic;
+﻿using GSR.Utilic.Generic;
 
 namespace GSR.EnDecic.Implementations.Primatives
 {
@@ -16,7 +15,8 @@ namespace GSR.EnDecic.Implementations.Primatives
         public static readonly IEnDec<string> STRING = new StringEnDec();
 
         public static IEnDec<IList<T>> List<T>(IEnDec<T> enDec, int fixedLength = -1) => new ListEnDec<T>(enDec, fixedLength);
-        public static IEnDec<IOrderedDictionary<string, T>> Map<T>(IEnDec<T> enDec, string[]? fixedKeys = null) => new MapEnDec<T>(enDec, fixedKeys);
+        public static IEnDec<IOrderedDictionary<K, V>> Map<K, V>(IEnDec<K> keyEnDec, IEnDec<V> valueEnDec, K[]? fixedKeys = null) => new MapEnDec<K, V>(keyEnDec, valueEnDec, fixedKeys);
+        public static IEnDec<IOrderedDictionary<string, V>> Map<V>(IEnDec<V> valueEnDec, string[]? fixedKeys = null) => new MapEnDec<string, V>(STRING, valueEnDec, fixedKeys);
         public static IEnDec<T?> Nullable<T>(IEnDec<T> enDec) => new NullableEnDec<T>(enDec);
 
     } // end class
