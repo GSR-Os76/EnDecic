@@ -1,10 +1,9 @@
-﻿
-using GSR.Utilic.Generic;
+﻿using GSR.Utilic.Generic;
 
 namespace GSR.EnDecic.Implementations.Primatives
 {
 #warning this and list are kind of not single purpose, maybe split up
-#warning create a TolerantStrictMapEnDec, always has fixed key set, but as long as length is matching it maps the result of decoding to the desired keys. Possibly keying encoded by index
+#warning create a (ImpliedKeyMapEnDec, always has fixed key set, but as long as length is matching it maps the result of decoding to the desired keys. Possibly keying encoded by index
     public sealed class MapEnDec<K, V> : IEnDec<IOrderedDictionary<K, V>>
     {
         private readonly IEnDec<K> _keyEnDec;

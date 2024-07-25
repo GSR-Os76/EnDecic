@@ -1,6 +1,8 @@
 ﻿using GSR.EnDecic;
 using GSR.EnDecic.ByteStream;
 using GSR.EnDecic.Implementations.Primatives;
+using GSR.Utilic.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace GSR.Tests.EnDecic.ByteStream
 {
@@ -99,13 +101,13 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow(6)]
         public void TestDecimalInterconversion(int index)
         {
-            decimal[] values = new decimal[] { 
-                decimal.MinValue, 
-                (decimal)-23589, 
-                (decimal)-394923.43243, 
-                (decimal)0, 
-                (decimal)432432.984715, 
-                (decimal)086503, 
+            decimal[] values = new decimal[] {
+                decimal.MinValue,
+                (decimal)-23589,
+                (decimal)-394923.43243,
+                (decimal)0,
+                (decimal)432432.984715,
+                (decimal)086503,
                 decimal.MaxValue };
             Assert.AreEqual(values[index], EncodeThenDecodeBS(PrimativeEnDecs.DECIMAL, values[index]));
         } // end TestDoubleInterconversion()
@@ -138,7 +140,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow("ফव")]
         [DataRow("𒀣uव𓆉")]
         [DataRow(null)]
-        public void TestNullableStringInterconversion(string? value) 
+        public void TestNullableStringInterconversion(string? value)
         {
             Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.STRING.NullableOf(), value));
         } // end TestNullableStringInterconversion()
@@ -162,6 +164,71 @@ namespace GSR.Tests.EnDecic.ByteStream
             for (int i = 0; i < ar.Length; i++)
                 Assert.AreEqual(value[i], ar[i]);
         } // end TestListStringInterconversion()
+
+
+
+        [TestMethod]
+        [DataRow(0)]
+        [DataRow(1)]
+        [DataRow(2)]
+        [DataRow(3)]
+        public void TestStringStringMapInterconversion(int index)
+        {
+            OrderedDictionary<string, string>[] values
+                = new OrderedDictionary<string, string>[]
+                {
+                    new OrderedDictionary<string, string>() { },
+                    new OrderedDictionary<string, string>() { { "_", "" } },
+                    new OrderedDictionary<string, string>() { { "e", "" }, { "k'", "`23lop;"} },
+                    new OrderedDictionary<string, string>() { { "_03-30_.", "\\\"g-./." }, { "data", "e"}, { "alseDat", "20-9"} },
+                };
+            IOrderedDictionary<string, string> ar = EncodeThenDecodeBS(PrimativeEnDecs.STRING.StringKeyedMapOf(), values[index]);
+            Assert.AreEqual(values[index].Count, ar.Count());
+            for (int i = 0; i < ar.Count; i++)
+                Assert.AreEqual(values[index][i], ar[i]);
+        } // end TestStringStringMapInterconversion()
+
+        [TestMethod]
+        [DataRow(0)]
+        [DataRow(1)]
+        [DataRow(2)]
+        [DataRow(3)]
+        public void TestStringDecimalMapInterconversion(int index)
+        {
+            OrderedDictionary<string, decimal>[] values
+                = new OrderedDictionary<string, decimal>[]
+                {
+                    new OrderedDictionary<string, decimal>() { },
+                    new OrderedDictionary<string, decimal>() { { "_", (decimal)0 } },
+                    new OrderedDictionary<string, decimal>() { { "e", (decimal)-302.3 }, { "k'", (decimal)3249.2432e3} },
+                    new OrderedDictionary<string, decimal>() { { "_03-30_.", (decimal)0 }, { "data", (decimal)90 }, { "alseDat", decimal.MinValue } },
+                };
+            IOrderedDictionary<string, decimal> ar = EncodeThenDecodeBS(PrimativeEnDecs.DECIMAL.StringKeyedMapOf(), values[index]);
+            Assert.AreEqual(values[index].Count, ar.Count());
+            for (int i = 0; i < ar.Count; i++)
+                Assert.AreEqual(values[index][i], ar[i]);
+        } // end TestStringDecimalMapInterconversion()
+
+        [TestMethod]
+        [DataRow(0)]
+        [DataRow(1)]
+        [DataRow(2)]
+        [DataRow(3)]
+        public void TestIntIntMapInterconversion(int index)
+        {
+            OrderedDictionary<int, int>[] values
+                = new OrderedDictionary<int, int>[]
+                {
+                    new OrderedDictionary<int, int>() { },
+                    new OrderedDictionary<int, int>() { { 534,-20 } },
+                    new OrderedDictionary<int, int>() { { 435, 209424 }, { -689, 6765} },
+                    new OrderedDictionary<int, int>() { { int.MinValue, 4 }, { 54, 54}, { 0, 0 } },
+                };
+            IOrderedDictionary<int, int> ar = EncodeThenDecodeBS(PrimativeEnDecs.INT_32.MapOf(PrimativeEnDecs.INT_32), values[index]);
+            Assert.AreEqual(values[index].Count, ar.Count());
+            for (int i = 0; i < ar.Count; i++)
+                Assert.AreEqual(values[index][i], ar[i]);
+        } // end TestStringDecimalMapInterconversion()
 
     } // end class
 } // end namespace

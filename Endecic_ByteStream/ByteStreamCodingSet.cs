@@ -37,10 +37,7 @@ namespace GSR.EnDecic.ByteStream
 
         public IList<U> DecodeList<U>(IQueue<byte> stream, IDecoder<U> elementTypeDecoder) => DecodeInt32(stream).XTimes<object>().Select((x) => elementTypeDecoder.Decode(this, stream)).ToImmutableList();
 
-        public IOrderedDictionary<K, V> DecodeMap<K, V>(IQueue<byte> stream, IDecoder<K> keyTypeDecoder, IDecoder<V> valueTypeDecoder)
-        {
-            throw new NotImplementedException();
-        }
+        public IOrderedDictionary<K, V> DecodeMap<K, V>(IQueue<byte> stream, IDecoder<K> keyTypeDecoder, IDecoder<V> valueTypeDecoder) => new ImmutableOrderedDictionary<K, V>(DecodeInt32(stream).XTimes<object>().Select((x) => KeyValuePair.Create(keyTypeDecoder.Decode(this, stream), valueTypeDecoder.Decode(this, stream))).ToArray());
 
         public U? DecodeNullable<U>(IQueue<byte> stream, IDecoder<U> elementTypeDecoder) => DecodeBoolean(stream) ? elementTypeDecoder.Decode(this, stream) : default;
 
@@ -73,10 +70,7 @@ namespace GSR.EnDecic.ByteStream
             return q;
         } // end EncodeList()
 
-        public IQueue<byte> EncodeMap<K, V>(IOrderedDictionary<K, V> data, IEncoder<K> keyEncoder, IEncoder<V> valueEncoder)
-        {
-            throw new NotImplementedException();
-        }
+        public IQueue<byte> EncodeMap<K, V>(IOrderedDictionary<K, V> data, IEncoder<K> keyEncoder, IEncoder<V> valueEncoder) => data.Aggregate(EncodeInt32(data.Count), (seed, x) => seed.Enqueue(keyEncoder.Encode(this, x.Key).DequeueAll()).Enqueue(valueEncoder.Encode(this, x.Value).DequeueAll()));
 
         public IQueue<byte> EncodeNullable<U>(U? data, IEncoder<U> elementEncoder) => data is not null ? EncodeBoolean(true).Enqueue(elementEncoder.Encode(this, data).DequeueAll()) : EncodeBoolean(false);
 
