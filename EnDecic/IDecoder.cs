@@ -2,6 +2,6 @@
 {
     public interface IDecoder<T>
     {
-        public T Decode<U>(ICodingSet<U> codingSet, U stream);
+        public T Decode<U>(IDecodingSet<U> codingSet, U stream);
     } // end class
 } // end namespace

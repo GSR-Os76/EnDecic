@@ -13,8 +13,8 @@
 
 
 
-        public T? Decode<U>(ICodingSet<U> codingSet, U stream) => codingSet.DecodeNullable(stream, _enDec);
+        public T? Decode<U>(IDecodingSet<U> codingSet, U stream) => codingSet.DecodeNullable(stream, _enDec);
 
-        public U Encode<U>(ICodingSet<U> codingSet, T? data) => codingSet.EncodeNullable(data, _enDec);
+        public U Encode<U>(IEncodingSet<U> codingSet, T? data) => codingSet.EncodeNullable(data, _enDec);
     } // end class
 } // end namespace

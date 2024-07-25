@@ -2,8 +2,8 @@
 {
     public sealed class DoubleEnDec : IEnDec<double>
     {
-        public double Decode<U>(ICodingSet<U> codingSet, U stream) => codingSet.DecodeDouble(stream);
+        public double Decode<U>(IDecodingSet<U> codingSet, U stream) => codingSet.DecodeDouble(stream);
 
-        public U Encode<U>(ICodingSet<U> codingSet, double data) => codingSet.EncodeDouble(data);
+        public U Encode<U>(IEncodingSet<U> codingSet, double data) => codingSet.EncodeDouble(data);
     } // end class
 } // end namespace

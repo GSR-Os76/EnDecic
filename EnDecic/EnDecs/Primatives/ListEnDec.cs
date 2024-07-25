@@ -19,7 +19,7 @@
 
 
 
-        public IList<T> Decode<U>(ICodingSet<U> codingSet, U stream)
+        public IList<T> Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
             IList<T> data = codingSet.DecodeList(stream, _enDec);
             if (_fixedLength != -1 && data.Count != _fixedLength)
@@ -28,7 +28,7 @@
             return data;
         } // end Decode()
 
-        public U Encode<U>(ICodingSet<U> codingSet, IList<T> data) => _fixedLength == -1 || data.Count == _fixedLength ? codingSet.EncodeList(data, _enDec) : throw new ArgumentException($"List of length: {data.Count}, is out of range for ListEnDec of fixed length: {_fixedLength}");
+        public U Encode<U>(IEncodingSet<U> codingSet, IList<T> data) => _fixedLength == -1 || data.Count == _fixedLength ? codingSet.EncodeList(data, _enDec) : throw new ArgumentException($"List of length: {data.Count}, is out of range for ListEnDec of fixed length: {_fixedLength}");
 
     } // end class
 } // end namespace

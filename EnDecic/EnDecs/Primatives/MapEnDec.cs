@@ -20,7 +20,7 @@ namespace GSR.EnDecic.Implementations.Primatives
 
 
 
-        public IOrderedDictionary<string, T> Decode<U>(ICodingSet<U> codingSet, U stream)
+        public IOrderedDictionary<string, T> Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
             IOrderedDictionary<string, T> data = codingSet.DecodeMap(stream, _enDec);
 
@@ -30,7 +30,7 @@ namespace GSR.EnDecic.Implementations.Primatives
             return data;
         } // end Decode()
 
-        public U Encode<U>(ICodingSet<U> codingSet, IOrderedDictionary<string, T> data)
+        public U Encode<U>(IEncodingSet<U> codingSet, IOrderedDictionary<string, T> data)
         {
             if (_fixedKeys != null && ((data.Keys.Count != _fixedKeys.Length) || !data.Keys.All((x) => _fixedKeys.Contains(x))))
                 throw new ArgumentException($"Can't write dictionary with keys not matching: {_fixedKeys}");

@@ -17,8 +17,8 @@
 
 
 
-        public T Decode<U>(ICodingSet<U> codingSet, U stream) => _decoder.Invoke(_from.Decode(codingSet, stream));
+        public T Decode<U>(IDecodingSet<U> codingSet, U stream) => _decoder.Invoke(_from.Decode(codingSet, stream));
 
-        public U Encode<U>(ICodingSet<U> codingSet, T data) => _from.Encode(codingSet, _encoder.Invoke(data));
+        public U Encode<U>(IEncodingSet<U> codingSet, T data) => _from.Encode(codingSet, _encoder.Invoke(data));
     } // end class
 } // end namespace

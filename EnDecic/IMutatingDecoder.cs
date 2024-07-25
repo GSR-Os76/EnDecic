@@ -10,7 +10,7 @@
         /// <param name="stream"></param>
         /// <param name="instance"></param>
         /// <returns>The mutated instance.</returns>
-        public T Mutate<U>(ICodingSet<U> codingSet, U stream, T instance);
+        public T Mutate<U>(IDecodingSet<U> codingSet, U stream, T instance);
 
     } // end interface
 } // end namespace
