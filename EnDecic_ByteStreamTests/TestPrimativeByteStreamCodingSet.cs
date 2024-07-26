@@ -1,8 +1,7 @@
 ﻿using GSR.EnDecic;
 using GSR.EnDecic.ByteStream;
-using GSR.EnDecic.Implementations.Primatives;
+using GSR.EnDecic.Implementations;
 using GSR.Utilic.Generic;
-using Newtonsoft.Json.Linq;
 
 namespace GSR.Tests.EnDecic.ByteStream
 {
@@ -20,7 +19,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow(true)]
         public void TestBoolInterconversion(bool value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.BOOLEAN, value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(EnDecs.BOOLEAN, value));
         } // end TestBoolInterconversion()
 
         [TestMethod]
@@ -29,7 +28,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow((byte)255)]
         public void TestByteInterconversion(byte value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.BYTE, value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(EnDecs.BYTE, value));
         } // end TestByteInterconversion()
 
         [TestMethod]
@@ -40,7 +39,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow(short.MaxValue)]
         public void TestShortInterconversion(short value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.INT_16, value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(EnDecs.INT_16, value));
         } // end TestShortInterconversion()
 
         [TestMethod]
@@ -51,7 +50,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow(int.MaxValue)]
         public void TestIntInterconversion(int value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.INT_32, value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(EnDecs.INT_32, value));
         } // end TestIntInterconversion()
 
         [TestMethod]
@@ -62,7 +61,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow(long.MaxValue)]
         public void TestLongInterconversion(long value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.INT_64, value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(EnDecs.INT_64, value));
         } // end TestLongInterconversion()
 
         [TestMethod]
@@ -75,7 +74,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow(float.MaxValue)]
         public void TestFloatInterconversion(float value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.SINGLE, value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(EnDecs.SINGLE, value));
         } // end TestFloatInterconversion()
 
         [TestMethod]
@@ -88,7 +87,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow(double.MaxValue)]
         public void TestDoubleInterconversion(double value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.DOUBLE, value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(EnDecs.DOUBLE, value));
         } // end TestDoubleInterconversion()
 
         [TestMethod]
@@ -109,7 +108,7 @@ namespace GSR.Tests.EnDecic.ByteStream
                 (decimal)432432.984715,
                 (decimal)086503,
                 decimal.MaxValue };
-            Assert.AreEqual(values[index], EncodeThenDecodeBS(PrimativeEnDecs.DECIMAL, values[index]));
+            Assert.AreEqual(values[index], EncodeThenDecodeBS(EnDecs.DECIMAL, values[index]));
         } // end TestDoubleInterconversion()
 
         [TestMethod]
@@ -124,7 +123,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow("𒀣uव𓆉")]
         public void TestStringInterconversion(string value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.STRING, value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(EnDecs.STRING, value));
         } // end TestStringInterconversion()
 
 
@@ -142,7 +141,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow(null)]
         public void TestNullableStringInterconversion(string? value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeBS(PrimativeEnDecs.STRING.NullableOf(), value));
+            Assert.AreEqual(value, EncodeThenDecodeBS(EnDecs.STRING.NullableOf(), value));
         } // end TestNullableStringInterconversion()
 
         [TestMethod]
@@ -159,7 +158,7 @@ namespace GSR.Tests.EnDecic.ByteStream
         [DataRow("𒀣uव𓆉", "", "4k", "et54r7")]
         public void TestListStringInterconversion(params string[] value)
         {
-            string[] ar = EncodeThenDecodeBS(PrimativeEnDecs.STRING.ListOf(), value).ToArray();
+            string[] ar = EncodeThenDecodeBS(EnDecs.STRING.ListOf(), value).ToArray();
             Assert.AreEqual(value.Length, ar.Length);
             for (int i = 0; i < ar.Length; i++)
                 Assert.AreEqual(value[i], ar[i]);
@@ -182,7 +181,7 @@ namespace GSR.Tests.EnDecic.ByteStream
                     new OrderedDictionary<string, string>() { { "e", "" }, { "k'", "`23lop;"} },
                     new OrderedDictionary<string, string>() { { "_03-30_.", "\\\"g-./." }, { "data", "e"}, { "alseDat", "20-9"} },
                 };
-            IOrderedDictionary<string, string> ar = EncodeThenDecodeBS(PrimativeEnDecs.STRING.StringKeyedMapOf(), values[index]);
+            IOrderedDictionary<string, string> ar = EncodeThenDecodeBS(EnDecs.STRING.StringKeyedMapOf(), values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
             for (int i = 0; i < ar.Count; i++)
                 Assert.AreEqual(values[index][i], ar[i]);
@@ -203,7 +202,7 @@ namespace GSR.Tests.EnDecic.ByteStream
                     new OrderedDictionary<string, decimal>() { { "e", (decimal)-302.3 }, { "k'", (decimal)3249.2432e3} },
                     new OrderedDictionary<string, decimal>() { { "_03-30_.", (decimal)0 }, { "data", (decimal)90 }, { "alseDat", decimal.MinValue } },
                 };
-            IOrderedDictionary<string, decimal> ar = EncodeThenDecodeBS(PrimativeEnDecs.DECIMAL.StringKeyedMapOf(), values[index]);
+            IOrderedDictionary<string, decimal> ar = EncodeThenDecodeBS(EnDecs.DECIMAL.StringKeyedMapOf(), values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
             for (int i = 0; i < ar.Count; i++)
                 Assert.AreEqual(values[index][i], ar[i]);
@@ -224,7 +223,7 @@ namespace GSR.Tests.EnDecic.ByteStream
                     new OrderedDictionary<int, int>() { { 435, 209424 }, { -689, 6765} },
                     new OrderedDictionary<int, int>() { { int.MinValue, 4 }, { 54, 54}, { 0, 0 } },
                 };
-            IOrderedDictionary<int, int> ar = EncodeThenDecodeBS(PrimativeEnDecs.INT_32.MapOf(PrimativeEnDecs.INT_32), values[index]);
+            IOrderedDictionary<int, int> ar = EncodeThenDecodeBS(EnDecs.INT_32.MapOf(EnDecs.INT_32), values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
             for (int i = 0; i < ar.Count; i++)
                 Assert.AreEqual(values[index][i], ar[i]);

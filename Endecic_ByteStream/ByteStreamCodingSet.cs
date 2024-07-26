@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GSR.EnDecic.ByteStream
 {
-    public class ByteStreamCodingSet : ICodingSet<IQueue<byte>>
+    public sealed class ByteStreamCodingSet : ICodingSet<IQueue<byte>>
     {
         public static readonly ICodingSet<IQueue<byte>> INSTANCE = new ByteStreamCodingSet();
 

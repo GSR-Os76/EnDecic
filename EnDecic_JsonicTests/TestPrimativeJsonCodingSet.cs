@@ -1,4 +1,5 @@
 ﻿using GSR.EnDecic;
+using GSR.EnDecic.Implementations;
 using GSR.EnDecic.Implementations.Primatives;
 using GSR.EnDecic.Jsonic;
 using GSR.Utilic.Generic;
@@ -19,7 +20,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow(true)]
         public void TestBoolInterconversion(bool value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeJs(PrimativeEnDecs.BOOLEAN, value));
+            Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.BOOLEAN, value));
         } // end TestBoolInterconversion()
 
         [TestMethod]
@@ -28,7 +29,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow((byte)255)]
         public void TestByteInterconversion(byte value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeJs(PrimativeEnDecs.BYTE, value));
+            Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.BYTE, value));
         } // end TestByteInterconversion()
 
         [TestMethod]
@@ -39,7 +40,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow(short.MaxValue)]
         public void TestShortInterconversion(short value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeJs(PrimativeEnDecs.INT_16, value));
+            Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.INT_16, value));
         } // end TestShortInterconversion()
 
         [TestMethod]
@@ -50,7 +51,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow(int.MaxValue)]
         public void TestIntInterconversion(int value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeJs(PrimativeEnDecs.INT_32, value));
+            Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.INT_32, value));
         } // end TestIntInterconversion()
 
         [TestMethod]
@@ -61,7 +62,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow(long.MaxValue)]
         public void TestLongInterconversion(long value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeJs(PrimativeEnDecs.INT_64, value));
+            Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.INT_64, value));
         } // end TestLongInterconversion()
 
         [TestMethod]
@@ -74,7 +75,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow(float.MaxValue)]
         public void TestFloatInterconversion(float value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeJs(PrimativeEnDecs.SINGLE, value));
+            Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.SINGLE, value));
         } // end TestFloatInterconversion()
 
         [TestMethod]
@@ -87,7 +88,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow(double.MaxValue)]
         public void TestDoubleInterconversion(double value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeJs(PrimativeEnDecs.DOUBLE, value));
+            Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.DOUBLE, value));
         } // end TestDoubleInterconversion()
 
         [TestMethod]
@@ -108,7 +109,7 @@ namespace GSR.Tests.EnDecic.Jsonic
                 (decimal)432432.984715, 
                 (decimal)086503, 
                 decimal.MaxValue };
-            Assert.AreEqual(values[index], EncodeThenDecodeJs(PrimativeEnDecs.DECIMAL, values[index]));
+            Assert.AreEqual(values[index], EncodeThenDecodeJs(EnDecs.DECIMAL, values[index]));
         } // end TestDoubleInterconversion()
 
         [TestMethod]
@@ -123,7 +124,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow("𒀣uव𓆉")]
         public void TestStringInterconversion(string value)
         {
-            Assert.AreEqual(value, EncodeThenDecodeJs(PrimativeEnDecs.STRING, value));
+            Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.STRING, value));
         } // end TestStringInterconversion()
 
 
@@ -141,7 +142,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow(null)]
         public void TestNullableStringInterconversion(string? value) 
         {
-            Assert.AreEqual(value, EncodeThenDecodeJs(PrimativeEnDecs.STRING.NullableOf(), value));
+            Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.STRING.NullableOf(), value));
         } // end TestNullableStringInterconversion()
 
         [TestMethod]
@@ -158,7 +159,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow("𒀣uव𓆉", "", "4k", "et54r7")]
         public void TestListStringInterconversion(params string[] value)
         {
-            string[] ar = EncodeThenDecodeJs(PrimativeEnDecs.STRING.ListOf(), value).ToArray();
+            string[] ar = EncodeThenDecodeJs(EnDecs.STRING.ListOf(), value).ToArray();
             Assert.AreEqual(value.Length, ar.Length);
             for (int i = 0; i < ar.Length; i++)
                 Assert.AreEqual(value[i], ar[i]);
@@ -179,7 +180,7 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<int, int>() { { 435, 209424 }, { -689, 6765} },
                     new OrderedDictionary<int, int>() { { int.MinValue, 4 }, { 54, 54}, { 0, 0 } },
                 };
-            IOrderedDictionary<int, int> ar = EncodeThenDecodeJs(PrimativeEnDecs.INT_32.MapOf(PrimativeEnDecs.INT_32), values[index]);
+            IOrderedDictionary<int, int> ar = EncodeThenDecodeJs(EnDecs.INT_32.MapOf(EnDecs.INT_32), values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
             for (int i = 0; i < ar.Count; i++)
                 Assert.AreEqual(values[index][i], ar[i]);
@@ -200,7 +201,7 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<string, string>() { { "e", "" }, { "k'", "`23lop;"} },
                     new OrderedDictionary<string, string>() { { "_03-30_.", "\\\"g-./." }, { "data", "e"}, { "alseDat", "20-9"} },
                 };
-            IOrderedDictionary<string, string> ar = EncodeThenDecodeJs(PrimativeEnDecs.STRING.StringKeyedMapOf(), values[index]);
+            IOrderedDictionary<string, string> ar = EncodeThenDecodeJs(EnDecs.STRING.StringKeyedMapOf(), values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
             for (int i = 0; i < ar.Count; i++)
                 Assert.AreEqual(values[index][i], ar[i]);
@@ -221,7 +222,7 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<string, decimal>() { { "e", (decimal)-302.3 }, { "k'", (decimal)3249.2432e3} },
                     new OrderedDictionary<string, decimal>() { { "_03-30_.", (decimal)0 }, { "data", (decimal)90 }, { "alseDat", decimal.MinValue } },
                 };
-            IOrderedDictionary<string, decimal> ar = EncodeThenDecodeJs(PrimativeEnDecs.DECIMAL.StringKeyedMapOf(), values[index]);
+            IOrderedDictionary<string, decimal> ar = EncodeThenDecodeJs(EnDecs.DECIMAL.StringKeyedMapOf(), values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
             for (int i = 0; i < ar.Count; i++)
                 Assert.AreEqual(values[index][i], ar[i]);
@@ -242,7 +243,7 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<string, string>() { { "e", "" }, { "k'", "`23lop;"} },
                     new OrderedDictionary<string, string>() { { "_03-30_.", "\\\"g-./." }, { "data", "e"}, { "alseDat", "20-9"} },
                 };
-            IOrderedDictionary<string, string> ar = EncodeThenDecode(PrimativeEnDecs.STRING.StringKeyedMapOf(), JsonCodingSet.STRING_KEYED_MAP_ONLY_INSTANCE, values[index]);
+            IOrderedDictionary<string, string> ar = EncodeThenDecode(EnDecs.STRING.StringKeyedMapOf(), JsonCodingSet.STRING_KEYED_MAP_ONLY_INSTANCE, values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
             for (int i = 0; i < ar.Count; i++)
                 Assert.AreEqual(values[index][i], ar[i]);
@@ -263,7 +264,7 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<string, decimal>() { { "e", (decimal)-302.3 }, { "k'", (decimal)3249.2432e3} },
                     new OrderedDictionary<string, decimal>() { { "_03-30_.", (decimal)0 }, { "data", (decimal)90 }, { "alseDat", decimal.MinValue } },
                 };
-            IOrderedDictionary<string, decimal> ar = EncodeThenDecode(PrimativeEnDecs.DECIMAL.StringKeyedMapOf(), JsonCodingSet.STRING_KEYED_MAP_ONLY_INSTANCE, values[index]);
+            IOrderedDictionary<string, decimal> ar = EncodeThenDecode(EnDecs.DECIMAL.StringKeyedMapOf(), JsonCodingSet.STRING_KEYED_MAP_ONLY_INSTANCE, values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
             for (int i = 0; i < ar.Count; i++)
                 Assert.AreEqual(values[index][i], ar[i]);
