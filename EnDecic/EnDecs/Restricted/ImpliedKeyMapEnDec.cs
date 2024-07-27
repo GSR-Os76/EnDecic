@@ -3,14 +3,14 @@ using System.Collections.Immutable;
 
 namespace GSR.EnDecic.Implementations.Restricted
 {
-    public sealed class ImpliedKeyMapEnDec<K, V> : IEnDec<IOrderedDictionary<K, V>>
+    public sealed class ImpliedKeysMapEnDec<K, V> : IEnDec<IOrderedDictionary<K, V>>
     {
         private readonly IEnDec<V> _valueEnDec;
         private readonly K[] _keys;
 
 
 
-        public ImpliedKeyMapEnDec(IEnDec<V> valueEnDec, K[] keys)
+        public ImpliedKeysMapEnDec(IEnDec<V> valueEnDec, K[] keys)
         {
             _valueEnDec = valueEnDec;
             _keys = keys;

@@ -1,9 +1,6 @@
-﻿using GSR.EnDecic;
-using GSR.EnDecic.Implementations.Primatives;
-using GSR.EnDecic.Jsonic;
+﻿using GSR.EnDecic.Jsonic;
 using GSR.Jsonic;
 using GSR.Utilic.Generic;
-using System;
 using System.Numerics;
 
 namespace GSR.Tests.EnDecic.Jsonic
@@ -11,6 +8,7 @@ namespace GSR.Tests.EnDecic.Jsonic
     [TestClass]
     public class TestJsonCodingSet
     {
+#warning possibly rename and use this file for restircting endecs in specific
         #region Vector3 Tests
         [TestMethod]
         [DataRow(new float[] { 0f, 2f, 3f }, "[\r\t0,\r\t2,\r\t3\r]")]
@@ -23,11 +21,11 @@ namespace GSR.Tests.EnDecic.Jsonic
         } // end TestEncodeVector3()
 
         [TestMethod]
-        [DataRow(new float[] { 0f, 2f, 3f}, "[0,2,3]")]
+        [DataRow(new float[] { 0f, 2f, 3f }, "[0,2,3]")]
         [DataRow(new float[] { -730f, 7247f, 34f }, "[-730,7247,34]")]
         [DataRow(new float[] { -730.2f, 7247.995f, -8 }, "[-730.2,7247.995,-8]")]
         [DataRow(new float[] { 0f, 0.0f, -0 }, "[0,0,0]")]
-        public void TestEncodeVector3Compressed(float[] vec, string expectation) 
+        public void TestEncodeVector3Compressed(float[] vec, string expectation)
         {
             Assert.AreEqual(expectation, TestingEnDecs.VECTOR_3.Encode(JsonCodingSet.INSTANCE, new Vector3(vec[0], vec[1], vec[2])).ToCompressedString());
         } // end TestEncodeVector3Compressed()
@@ -39,10 +37,10 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow("[4, -122,\t\t \r 3]", new float[] { 4f, -122f, 3f })]
         [DataRow("[0,0.0,0e3]", new float[] { 0f, 0f, 0f })]
         [DataRow("[-932843.3e1, 7E-4, 26 ]    ", new float[] { -9328433f, .0007f, 26f })]
-        public void TestDecodeVector3(string json, float[] expectation) 
+        public void TestDecodeVector3(string json, float[] expectation)
         {
             Assert.AreEqual(
-                new Vector3(expectation[0], expectation[1], expectation[2]), 
+                new Vector3(expectation[0], expectation[1], expectation[2]),
                 TestingEnDecs.VECTOR_3.Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json)));
         } // end TestDecodeVector3()
 
@@ -149,7 +147,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow("null", 0)]
         [DataRow("           null", 0)]
         [DataRow("null \r", 0)]
-        public void TestDecodeNullableMap(string json, int expectationIndex) 
+        public void TestDecodeNullableMap(string json, int expectationIndex)
         {
             OrderedDictionary<string, string>?[] l
                 = new OrderedDictionary<string, string>?[]
@@ -162,6 +160,8 @@ namespace GSR.Tests.EnDecic.Jsonic
             Assert.AreEqual(l[expectationIndex], TestingEnDecs.NULLABLE_STRING_STRING_MAP.Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json)));
         } // end TestDecodeNullableMap()
         #endregion
+
+
 
     } // end class
 } // end namespace
