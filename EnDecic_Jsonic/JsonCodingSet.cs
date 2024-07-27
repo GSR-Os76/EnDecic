@@ -19,7 +19,7 @@ namespace GSR.EnDecic.Jsonic
 
 
 
-        public JsonCodingSet(bool stringKeyedOnly = false) 
+        public JsonCodingSet(bool stringKeyedOnly = false)
         {
             _stringKeyedOnly = stringKeyedOnly;
         } // end constructor
@@ -44,10 +44,10 @@ namespace GSR.EnDecic.Jsonic
 
         public IList<U> DecodeList<U>(JsonElement stream, IDecoder<U> elementDecoder) => stream.AsArray().Select((x) => elementDecoder.Decode(this, x)).ToImmutableList();
 
-        public IOrderedDictionary<K, V> DecodeMap<K, V>(JsonElement stream, IDecoder<K> keyDecoder, IDecoder<V> elementDecoder) 
+        public IOrderedDictionary<K, V> DecodeMap<K, V>(JsonElement stream, IDecoder<K> keyDecoder, IDecoder<V> elementDecoder)
             => new ImmutableOrderedDictionary<K, V>(stream.AsObject().GetKeySet().Select((x) => KeyValuePair.Create(
-                _stringKeyedOnly ? keyDecoder.Decode(this, new JsonElement(x)) : keyDecoder.Decode(this, JsonElement.ParseJson(x.ToUnescapedString())), 
-                elementDecoder.Decode(this, stream.AsObject()[x])))); 
+                _stringKeyedOnly ? keyDecoder.Decode(this, new JsonElement(x)) : keyDecoder.Decode(this, JsonElement.ParseJson(x.ToUnescapedString())),
+                elementDecoder.Decode(this, stream.AsObject()[x]))));
 
         public U? DecodeNullable<U>(JsonElement stream, IDecoder<U> elementDecoder) => stream.Type == JsonType.Null ? default : elementDecoder.Decode(this, stream);
 
@@ -61,9 +61,21 @@ namespace GSR.EnDecic.Jsonic
 
         public JsonElement EncodeDecimal(decimal data) => new(data);
 
-        public JsonElement EncodeDouble(double data) => new(data);
+        public JsonElement EncodeDouble(double data) => data switch
+        {
+            double.NegativeInfinity => throw new EncodingException("Can't encode negative infinity as a valid json number."),
+            double.NaN => throw new EncodingException("Can't encode \"NaN\" as a json number."),
+            double.PositiveInfinity => throw new EncodingException("Can't encode positive infinity as a valid json number."),
+            _ => new(data),
+        };
 
-        public JsonElement EncodeSingle(float data) => new(data);
+        public JsonElement EncodeSingle(float data) => data switch
+        {
+            float.NegativeInfinity => throw new EncodingException("Can't encode negative infinity as a valid json number."),
+            float.NaN => throw new EncodingException("Can't encode \"NaN\" as a json number."),
+            float.PositiveInfinity => throw new EncodingException("Can't encode positive infinity as a valid json number."),
+            _ => new(data),
+        }; 
 
         public JsonElement EncodeInt16(short data) => new(data);
 
@@ -78,7 +90,7 @@ namespace GSR.EnDecic.Jsonic
                 .Select((x) => Tuple.Create(keyEncoder.Encode(this, x.Key), valueEncoder.Encode(this, x.Value))) // map to the encoded kvp
                 .Aggregate(new JsonObject(), (seed, x) => seed.Add( // add kvp to a JsonObject
                     _stringKeyedOnly 
-                    ? x.Item1.Type == JsonType.String ? x.Item1.AsString() : throw new InvalidOperationException($"Can't write non-string keyed map with current settings. Try {nameof(JsonCodingSet)}.{nameof(INSTANCE)}.")
+                    ? x.Item1.Type == JsonType.String ? x.Item1.AsString() : throw new EncodingException($"Can't encode non-string keyed map with current settings. Try {nameof(JsonCodingSet)}.{nameof(INSTANCE)}.")
                     : JsonString.FromUnescapedString( x.Item1.ToCompressedString()), // if key is string use directly as the key, else create json string holding the json for the encoded object.
                     x.Item2)));
 

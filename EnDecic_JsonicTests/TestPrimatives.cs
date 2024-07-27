@@ -66,36 +66,50 @@ namespace GSR.Tests.EnDecic.Jsonic
         } // end TestLongInterconversion()
 
         [TestMethod]
-        [DataRow(float.NegativeInfinity)]
         [DataRow(float.MinValue)]
         [DataRow((float)-5485)]
         [DataRow((float)-9753454.45)]
         [DataRow((float)0)]
-        [DataRow(float.NaN)]
         [DataRow((float)452.3430)]
         [DataRow((float)3429)]
         [DataRow(float.MaxValue)]
-        [DataRow(float.PositiveInfinity)]
         public void TestFloatInterconversion(float value)
         {
             Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.SINGLE, value));
         } // end TestFloatInterconversion()
 
         [TestMethod]
-        [DataRow(double.NegativeInfinity)]
+        [ExpectedException(typeof(EncodingException))]
+        [DataRow(float.NegativeInfinity)]
+        [DataRow(float.NaN)]
+        [DataRow(float.PositiveInfinity)]
+        public void TestFloatInterconversionInvalid(float value)
+        {
+            EncodeThenDecodeJs(EnDecs.SINGLE, value);
+        } // end TestFloatInterconversionInvalid()
+
+        [TestMethod]
         [DataRow(double.MinValue)]
         [DataRow((double)-5485)]
         [DataRow((double)-546.34)]
         [DataRow((double)0)]
-        [DataRow(double.NaN)]
         [DataRow((double)4264.3455)]
         [DataRow((double)3429)]
         [DataRow(double.MaxValue)]
-        [DataRow(double.PositiveInfinity)]
         public void TestDoubleInterconversion(double value)
         {
             Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.DOUBLE, value));
         } // end TestDoubleInterconversion()
+
+        [TestMethod]
+        [ExpectedException(typeof(EncodingException))]
+        [DataRow(double.NegativeInfinity)]
+        [DataRow(double.NaN)]
+        [DataRow(double.PositiveInfinity)]
+        public void TestDoubleInterconversionInvalid(double value)
+        {
+            EncodeThenDecodeJs(EnDecs.DOUBLE, value);
+        } // end TestDoubleInterconversionInvalid()
 
         [TestMethod]
         [DataRow(0)]
