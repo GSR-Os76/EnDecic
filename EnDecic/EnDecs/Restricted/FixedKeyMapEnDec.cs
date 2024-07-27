@@ -1,10 +1,6 @@
-﻿using GSR.Utilic.Generic;
-
-namespace GSR.EnDecic.Implementations.Restricted
+﻿namespace GSR.EnDecic.Implementations.Restricted
 {
-#warning this and list are kind of not single purpose, maybe split up
-#warning create a (ImpliedKeyMapEnDec, always has fixed key set, but as long as length is matching it maps the result of decoding to the desired keys. Possibly keying encoded by index
-    public sealed class FixedKeysMapEnDec<K, V> : IEnDec<IOrderedDictionary<K, V>>
+    public sealed class FixedKeysMapEnDec<K, V> : IEnDec<IDictionary<K, V>>
     {
         private readonly IEnDec<K> _keyEnDec;
         private readonly IEnDec<V> _valueEnDec;
@@ -21,9 +17,9 @@ namespace GSR.EnDecic.Implementations.Restricted
 
 
 
-        public IOrderedDictionary<K, V> Decode<U>(IDecodingSet<U> codingSet, U stream)
+        public IDictionary<K, V> Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
-            IOrderedDictionary<K, V> data = codingSet.DecodeMap(stream, _keyEnDec, _valueEnDec);
+            IDictionary<K, V> data = codingSet.DecodeMap(stream, _keyEnDec, _valueEnDec);
 
             if ((data.Keys.Count != _keys.Length) || !data.Keys.All((x) => _keys.Contains(x)))
                 throw new ArgumentException($"Invalid map read, keys not matching: {_keys}");
@@ -31,7 +27,7 @@ namespace GSR.EnDecic.Implementations.Restricted
             return data;
         } // end Decode()
 
-        public U Encode<U>(IEncodingSet<U> codingSet, IOrderedDictionary<K, V> data)
+        public U Encode<U>(IEncodingSet<U> codingSet, IDictionary<K, V> data)
         {
             if ((data.Keys.Count != _keys.Length) || !data.Keys.All((x) => _keys.Contains(x)))
                 throw new ArgumentException($"Can't write dictionary with keys not matching: {_keys}");

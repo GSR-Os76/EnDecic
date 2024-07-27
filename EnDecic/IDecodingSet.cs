@@ -14,7 +14,16 @@ namespace GSR.EnDecic
         public decimal DecodeDecimal(T stream);
         public string DecodeString(T stream);
         public IList<U> DecodeList<U>(T stream, IDecoder<U> elementDecoder);
-        public IOrderedDictionary<K, V> DecodeMap<K, V>(T stream, IDecoder<K> keyDecoder, IDecoder<V> valueDecoder);
+        /// <summary>
+        /// Decodes a map from the data stream, returning the key value pairs in the order they were found.
+        /// </summary>
+        /// <typeparam name="K"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="stream"></param>
+        /// <param name="keyDecoder"></param>
+        /// <param name="valueDecoder"></param>
+        /// <returns></returns>
+        public IDictionary<K, V> DecodeMap<K, V>(T stream, IDecoder<K> keyDecoder, IDecoder<V> valueDecoder);
         public U? DecodeNullable<U>(T stream, IDecoder<U> elementDecoder);
     } // end interface
 } // end namespace

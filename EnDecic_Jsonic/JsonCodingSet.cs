@@ -44,7 +44,7 @@ namespace GSR.EnDecic.Jsonic
 
         public IList<U> DecodeList<U>(JsonElement stream, IDecoder<U> elementDecoder) => stream.AsArray().Select((x) => elementDecoder.Decode(this, x)).ToImmutableList();
 
-        public IOrderedDictionary<K, V> DecodeMap<K, V>(JsonElement stream, IDecoder<K> keyDecoder, IDecoder<V> elementDecoder)
+        public IDictionary<K, V> DecodeMap<K, V>(JsonElement stream, IDecoder<K> keyDecoder, IDecoder<V> elementDecoder)
             => new ImmutableOrderedDictionary<K, V>(stream.AsObject().GetKeySet().Select((x) => KeyValuePair.Create(
                 _stringKeyedOnly ? keyDecoder.Decode(this, new JsonElement(x)) : keyDecoder.Decode(this, JsonElement.ParseJson(x.ToUnescapedString())),
                 elementDecoder.Decode(this, stream.AsObject()[x]))));
@@ -73,7 +73,7 @@ namespace GSR.EnDecic.Jsonic
 
         public JsonElement EncodeList<U>(IList<U> data, IEncoder<U> elementEncoder) => new(new JsonArray(data.Select((x) => elementEncoder.Encode(this, x)).ToArray()));
 
-        public JsonElement EncodeMap<K, V>(IOrderedDictionary<K, V> data, IEncoder<K> keyEncoder, IEncoder<V> valueEncoder)
+        public JsonElement EncodeMap<K, V>(IDictionary<K, V> data, IEncoder<K> keyEncoder, IEncoder<V> valueEncoder)
             => new(data
                 .Select((x) => Tuple.Create(keyEncoder.Encode(this, x.Key), valueEncoder.Encode(this, x.Value))) // map to the encoded kvp
                 .Aggregate(new JsonObject(), (seed, x) => seed.Add( // add kvp to a JsonObject

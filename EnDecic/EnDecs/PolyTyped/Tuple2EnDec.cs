@@ -5,7 +5,7 @@
     /// </summary>
     /// <typeparam name="T1"></typeparam>
     /// <typeparam name="T2"></typeparam>
-    public class Tuple2EnDec<T1, T2> : IEnDec<Tuple<T1, T2>>
+    public sealed class Tuple2EnDec<T1, T2> : IEnDec<Tuple<T1, T2>>
     {
         private readonly IEnDec<T1> _t1EnDec;
         private readonly IEnDec<T2> _t2EnDec;

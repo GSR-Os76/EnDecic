@@ -200,10 +200,10 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<int, int>() { { 435, 209424 }, { -689, 6765} },
                     new OrderedDictionary<int, int>() { { int.MinValue, 4 }, { 54, 54}, { 0, 0 } },
                 };
-            IOrderedDictionary<int, int> ar = EncodeThenDecodeJs(EnDecs.INT_32.MapOf(EnDecs.INT_32), values[index]);
+            IDictionary<int, int> ar = EncodeThenDecodeJs(EnDecs.INT_32.MapOf(EnDecs.INT_32), values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
-            for (int i = 0; i < ar.Count; i++)
-                Assert.AreEqual(values[index][i], ar[i]);
+            foreach (int key in ar.Keys)
+                Assert.AreEqual(values[index][key: key], ar[key]);
         } // end TestStringDecimalMapInterconversion()
 
         [TestMethod]
@@ -221,10 +221,10 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<string, string>() { { "e", "" }, { "k'", "`23lop;"} },
                     new OrderedDictionary<string, string>() { { "_03-30_.", "\\\"g-./." }, { "data", "e"}, { "alseDat", "20-9"} },
                 };
-            IOrderedDictionary<string, string> ar = EncodeThenDecodeJs(EnDecs.STRING.StringKeyedMapOf(), values[index]);
+            IDictionary<string, string> ar = EncodeThenDecodeJs(EnDecs.STRING.StringKeyedMapOf(), values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
-            for (int i = 0; i < ar.Count; i++)
-                Assert.AreEqual(values[index][i], ar[i]);
+            foreach (string key in ar.Keys)
+                Assert.AreEqual(values[index][key], ar[key]);
         } // end TestStringStringMapInterconversion()
 
         [TestMethod]
@@ -242,10 +242,10 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<string, decimal>() { { "e", (decimal)-302.3 }, { "k'", (decimal)3249.2432e3} },
                     new OrderedDictionary<string, decimal>() { { "_03-30_.", (decimal)0 }, { "data", (decimal)90 }, { "alseDat", decimal.MinValue } },
                 };
-            IOrderedDictionary<string, decimal> ar = EncodeThenDecodeJs(EnDecs.DECIMAL.StringKeyedMapOf(), values[index]);
+            IDictionary<string, decimal> ar = EncodeThenDecodeJs(EnDecs.DECIMAL.StringKeyedMapOf(), values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
-            for (int i = 0; i < ar.Count; i++)
-                Assert.AreEqual(values[index][i], ar[i]);
+            foreach (string key in ar.Keys)
+                Assert.AreEqual(values[index][key], ar[key]);
         } // end TestStringDecimalMapInterconversion()
 
         [TestMethod]
@@ -263,10 +263,10 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<string, string>() { { "e", "" }, { "k'", "`23lop;"} },
                     new OrderedDictionary<string, string>() { { "_03-30_.", "\\\"g-./." }, { "data", "e"}, { "alseDat", "20-9"} },
                 };
-            IOrderedDictionary<string, string> ar = EncodeThenDecode(EnDecs.STRING.StringKeyedMapOf(), JsonCodingSet.STRING_KEYED_MAP_ONLY_INSTANCE, values[index]);
+            IDictionary<string, string> ar = EncodeThenDecode(EnDecs.STRING.StringKeyedMapOf(), JsonCodingSet.STRING_KEYED_MAP_ONLY_INSTANCE, values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
-            for (int i = 0; i < ar.Count; i++)
-                Assert.AreEqual(values[index][i], ar[i]);
+            foreach (string key in ar.Keys)
+                Assert.AreEqual(values[index][key], ar[key]);
         } // end TestStringStringMapInterconversion()
 
         [TestMethod]
@@ -284,10 +284,10 @@ namespace GSR.Tests.EnDecic.Jsonic
                     new OrderedDictionary<string, decimal>() { { "e", (decimal)-302.3 }, { "k'", (decimal)3249.2432e3} },
                     new OrderedDictionary<string, decimal>() { { "_03-30_.", (decimal)0 }, { "data", (decimal)90 }, { "alseDat", decimal.MinValue } },
                 };
-            IOrderedDictionary<string, decimal> ar = EncodeThenDecode(EnDecs.DECIMAL.StringKeyedMapOf(), JsonCodingSet.STRING_KEYED_MAP_ONLY_INSTANCE, values[index]);
+            IDictionary<string, decimal> ar = EncodeThenDecode(EnDecs.DECIMAL.StringKeyedMapOf(), JsonCodingSet.STRING_KEYED_MAP_ONLY_INSTANCE, values[index]);
             Assert.AreEqual(values[index].Count, ar.Count());
-            for (int i = 0; i < ar.Count; i++)
-                Assert.AreEqual(values[index][i], ar[i]);
+            foreach (string key in ar.Keys)
+                Assert.AreEqual(values[index][key], ar[key]);
         } // end TestStringDecimalMapInterconversion()
 
     } // end class

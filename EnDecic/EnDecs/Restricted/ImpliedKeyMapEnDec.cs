@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 
 namespace GSR.EnDecic.Implementations.Restricted
 {
-    public sealed class ImpliedKeysMapEnDec<K, V> : IEnDec<IOrderedDictionary<K, V>>
+    public sealed class ImpliedKeysMapEnDec<K, V> : IEnDec<IDictionary<K, V>>
     {
         private readonly IEnDec<V> _valueEnDec;
         private readonly K[] _keys;
@@ -18,7 +18,7 @@ namespace GSR.EnDecic.Implementations.Restricted
 
 
 
-        public IOrderedDictionary<K, V> Decode<U>(IDecodingSet<U> codingSet, U stream)
+        public IDictionary<K, V> Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
             IList<V> data = codingSet.DecodeList(stream, _valueEnDec);
 
@@ -28,7 +28,7 @@ namespace GSR.EnDecic.Implementations.Restricted
             return new ImmutableOrderedDictionary<K, V>(_keys.Select((x, i) => KeyValuePair.Create(x, data[i])));
         } // end Decode()
 
-        public U Encode<U>(IEncodingSet<U> codingSet, IOrderedDictionary<K, V> data)
+        public U Encode<U>(IEncodingSet<U> codingSet, IDictionary<K, V> data)
         {
             if ((data.Keys.Count != _keys.Length) || !data.Keys.All((x) => _keys.Contains(x)))
                 throw new ArgumentException($"Can't write dictionary with keys not matching: {_keys}.");

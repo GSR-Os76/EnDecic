@@ -18,8 +18,8 @@ namespace GSR.EnDecic.Implementations
         public static readonly IEnDec<string> STRING = new StringEnDec();
 
         public static IEnDec<IList<T>> List<T>(IEnDec<T> enDec) => new ListEnDec<T>(enDec);
-        public static IEnDec<IOrderedDictionary<K, V>> Map<K, V>(IEnDec<K> keyEnDec, IEnDec<V> valueEnDec) => new MapEnDec<K, V>(keyEnDec, valueEnDec);
-        public static IEnDec<IOrderedDictionary<string, V>> StringKeyedMap<V>(IEnDec<V> valueEnDec) => new MapEnDec<string, V>(STRING, valueEnDec);
+        public static IEnDec<IDictionary<K, V>> Map<K, V>(IEnDec<K> keyEnDec, IEnDec<V> valueEnDec) => new MapEnDec<K, V>(keyEnDec, valueEnDec);
+        public static IEnDec<IDictionary<string, V>> StringKeyedMap<V>(IEnDec<V> valueEnDec) => new MapEnDec<string, V>(STRING, valueEnDec);
         public static IEnDec<T?> Nullable<T>(IEnDec<T> enDec) => new NullableEnDec<T>(enDec);
         #endregion
 
@@ -32,10 +32,10 @@ namespace GSR.EnDecic.Implementations
         public static IEnDec<double> RangedDouble(double boundOne, double boundTwo) => new RangedDoubleEnDec(boundOne, boundTwo);
         public static IEnDec<decimal> RangedDecimal(decimal boundOne, decimal boundTwo) => new RangedDecimalEnDec(boundOne, boundTwo);
         public static IEnDec<IList<T>> FixedLengthList<T>(IEnDec<T> enDec, int length) => new FixedLengthListEnDec<T>(enDec, length);
-        public static IEnDec<IOrderedDictionary<K, V>> FixedKeysMap<K, V>(IEnDec<K> keyEnDec, IEnDec<V> valueEnDec, K[] keys) => new FixedKeysMapEnDec<K, V>(keyEnDec, valueEnDec, keys);
-        public static IEnDec<IOrderedDictionary<string, V>> FixedKeysStringKeyedMap<V>(IEnDec<V> valueEnDec, string[] keys) => new FixedKeysMapEnDec<string, V>(STRING, valueEnDec, keys);
-        public static IEnDec<IOrderedDictionary<K, V>> ImpliedKeysMap<K, V>(IEnDec<V> valueEnDec, K[] fixedKeys) => new ImpliedKeysMapEnDec<K, V>(valueEnDec, fixedKeys);
-        public static IEnDec<IOrderedDictionary<string, V>> ImpliedKeysStringKeyedMap<V>(IEnDec<V> valueEnDec, string[] fixedKeys) => new ImpliedKeysMapEnDec<string, V>(valueEnDec, fixedKeys);
+        public static IEnDec<IDictionary<K, V>> FixedKeysMap<K, V>(IEnDec<K> keyEnDec, IEnDec<V> valueEnDec, K[] keys) => new FixedKeysMapEnDec<K, V>(keyEnDec, valueEnDec, keys);
+        public static IEnDec<IDictionary<string, V>> FixedKeysStringKeyedMap<V>(IEnDec<V> valueEnDec, string[] keys) => new FixedKeysMapEnDec<string, V>(STRING, valueEnDec, keys);
+        public static IEnDec<IDictionary<K, V>> ImpliedKeysMap<K, V>(IEnDec<V> valueEnDec, K[] fixedKeys) => new ImpliedKeysMapEnDec<K, V>(valueEnDec, fixedKeys);
+        public static IEnDec<IDictionary<string, V>> ImpliedKeysStringKeyedMap<V>(IEnDec<V> valueEnDec, string[] fixedKeys) => new ImpliedKeysMapEnDec<string, V>(valueEnDec, fixedKeys);
         #endregion
 
         #region Other
