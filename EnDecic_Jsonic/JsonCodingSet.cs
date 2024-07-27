@@ -61,21 +61,9 @@ namespace GSR.EnDecic.Jsonic
 
         public JsonElement EncodeDecimal(decimal data) => new(data);
 
-        public JsonElement EncodeDouble(double data) => data switch
-        {
-            double.NegativeInfinity => throw new EncodingException("Can't encode negative infinity as a valid json number."),
-            double.NaN => throw new EncodingException("Can't encode \"NaN\" as a json number."),
-            double.PositiveInfinity => throw new EncodingException("Can't encode positive infinity as a valid json number."),
-            _ => new(data),
-        };
+        public JsonElement EncodeDouble(double data) => new(data);
 
-        public JsonElement EncodeSingle(float data) => data switch
-        {
-            float.NegativeInfinity => throw new EncodingException("Can't encode negative infinity as a valid json number."),
-            float.NaN => throw new EncodingException("Can't encode \"NaN\" as a json number."),
-            float.PositiveInfinity => throw new EncodingException("Can't encode positive infinity as a valid json number."),
-            _ => new(data),
-        }; 
+        public JsonElement EncodeSingle(float data) => new(data);
 
         public JsonElement EncodeInt16(short data) => new(data);
 

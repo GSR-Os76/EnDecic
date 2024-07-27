@@ -2,6 +2,7 @@
 using GSR.EnDecic.Implementations;
 using GSR.EnDecic.Implementations.Primatives;
 using GSR.EnDecic.Jsonic;
+using GSR.Jsonic;
 using GSR.Utilic.Generic;
 
 namespace GSR.Tests.EnDecic.Jsonic
@@ -79,13 +80,13 @@ namespace GSR.Tests.EnDecic.Jsonic
         } // end TestFloatInterconversion()
 
         [TestMethod]
-        [ExpectedException(typeof(EncodingException))]
+        [ExpectedException(typeof(MalformedJsonException))]
         [DataRow(float.NegativeInfinity)]
         [DataRow(float.NaN)]
         [DataRow(float.PositiveInfinity)]
         public void TestFloatInterconversionInvalid(float value)
         {
-            EncodeThenDecodeJs(EnDecs.SINGLE, value);
+            EnDecs.SINGLE.Encode(JsonCodingSet.INSTANCE, value);
         } // end TestFloatInterconversionInvalid()
 
         [TestMethod]
@@ -102,14 +103,14 @@ namespace GSR.Tests.EnDecic.Jsonic
         } // end TestDoubleInterconversion()
 
         [TestMethod]
-        [ExpectedException(typeof(EncodingException))]
+        [ExpectedException(typeof(MalformedJsonException))]
         [DataRow(double.NegativeInfinity)]
         [DataRow(double.NaN)]
         [DataRow(double.PositiveInfinity)]
-        public void TestDoubleInterconversionInvalid(double value)
+        public void TestDoubleEncodeInvalid(double value)
         {
-            EncodeThenDecodeJs(EnDecs.DOUBLE, value);
-        } // end TestDoubleInterconversionInvalid()
+            EnDecs.DOUBLE.Encode(JsonCodingSet.INSTANCE, value);
+        } // end TestDoubleEncodeInvalid()
 
         [TestMethod]
         [DataRow(0)]
