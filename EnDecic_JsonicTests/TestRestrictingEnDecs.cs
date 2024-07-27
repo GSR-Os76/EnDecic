@@ -1,4 +1,6 @@
-﻿using GSR.EnDecic.Jsonic;
+﻿using GSR.EnDecic;
+using GSR.EnDecic.Implementations;
+using GSR.EnDecic.Jsonic;
 using GSR.Jsonic;
 using GSR.Utilic.Generic;
 using System.Numerics;
@@ -6,10 +8,14 @@ using System.Numerics;
 namespace GSR.Tests.EnDecic.Jsonic
 {
     [TestClass]
-    public class TestJsonCodingSet
+    public class TestRestrictingEnDecs
     {
-#warning possibly rename and use this file for restircting endecs in specific
-        #region Vector3 Tests
+        public static readonly IEnDec<byte> BYTE_BETWEEN_2_AND_127_ENDEC = EnDecs.BYTE.Ranged((byte)2, (byte)127);
+        public static readonly IEnDec<byte> BYTE_BETWEEN_127_AND_2_ENDEC = EnDecs.BYTE.Ranged((byte)127, (byte)2);
+        public static readonly IEnDec<byte> BYTE_BETWEEN_93_AND_93_ENDEC = EnDecs.BYTE.Ranged((byte)93, (byte)93);
+
+
+        #region Vector3(Mapped, fixed length list) Tests
         [TestMethod]
         [DataRow(new float[] { 0f, 2f, 3f }, "[\r\t0,\r\t2,\r\t3\r]")]
         [DataRow(new float[] { -730f, 7247f, 34f }, "[\r\t-730,\r\t7247,\r\t34\r]")]
@@ -66,7 +72,58 @@ namespace GSR.Tests.EnDecic.Jsonic
         } // end TestDecodeVector3Invalid2()
         #endregion
 
-        #region NullableMap Tests
+        #region Range Tests
+        #region Byte Tests
+        [TestMethod]
+        [DataRow((byte)2, "2")]
+        [DataRow((byte)12, "12")]
+        [DataRow((byte)34, "34")]
+        [DataRow((byte)127, "127")]
+        public void TestByteRangeEnDecInRange(byte b, string expectation) 
+        {
+            Assert.AreEqual(expectation, BYTE_BETWEEN_2_AND_127_ENDEC.Encode(JsonCodingSet.INSTANCE, b).ToString());
+            Assert.AreEqual(expectation, BYTE_BETWEEN_127_AND_2_ENDEC.Encode(JsonCodingSet.INSTANCE, b).ToString());
+        } // end TestByteRangeEnDecInRange()
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [DataRow((byte)0)]
+        [DataRow((byte)1)]
+        [DataRow((byte)128)]
+        [DataRow((byte)255)]
+        public void TestByteRangeEnDecOutOfRange(byte b)
+        {
+            BYTE_BETWEEN_2_AND_127_ENDEC.Encode(JsonCodingSet.INSTANCE, b);
+            BYTE_BETWEEN_127_AND_2_ENDEC.Encode(JsonCodingSet.INSTANCE, b);
+        } // end TestByteRangeEnDecOutOfRange()
+
+
+
+        [TestMethod]
+        [DataRow((byte)93, "93")]
+        public void TestSingleValueByteRangeEnDecInRange(byte b, string expectation)
+        {
+            Assert.AreEqual(expectation, BYTE_BETWEEN_93_AND_93_ENDEC.Encode(JsonCodingSet.INSTANCE, b).ToString());
+        } // end TestSingleValueByteRangeEnDecInRange()
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [DataRow((byte)0)]
+        [DataRow((byte)92)]
+        [DataRow((byte)94)]
+        [DataRow((byte)255)]
+        public void TestSingleValueByteRangeEnDecOutOfRange(byte b)
+        {
+            BYTE_BETWEEN_93_AND_93_ENDEC.Encode(JsonCodingSet.INSTANCE, b);
+        } // end TestSingleValueByteRangeEnDecOutOfRange()
+
+        #endregion
+
+        #endregion
+
+
+
+        #region NullableMap(not technically relevant, just multiple primatives) Tests
         [TestMethod]
         [DataRow(0, "null")]
         [DataRow(1, "{\r\r}")]
