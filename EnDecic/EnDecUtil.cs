@@ -1,6 +1,5 @@
 ﻿using GSR.EnDecic.Implementations;
 using GSR.EnDecic.Implementations.Primatives;
-using GSR.EnDecic.Implementations.Restricted;
 using GSR.Utilic.Generic;
 
 namespace GSR.EnDecic
@@ -15,7 +14,13 @@ namespace GSR.EnDecic
 
 
 
-        public static IEnDec<byte> Ranged(this IEnDec<byte> b, byte boundOne, byte boundTwo) => EnDecs.RangedByte(boundOne, boundTwo);
+        public static IEnDec<byte> Ranged(this IEnDec<byte> _, byte boundOne, byte boundTwo) => EnDecs.RangedByte(boundOne, boundTwo);
+        public static IEnDec<short> Ranged(this IEnDec<short> _, short boundOne, short boundTwo) => EnDecs.RangedInt16(boundOne, boundTwo);
+        public static IEnDec<int> Ranged(this IEnDec<int> _, int boundOne, int boundTwo) => EnDecs.RangedInt32(boundOne, boundTwo);
+        public static IEnDec<long> Ranged(this IEnDec<long> _, long boundOne, long boundTwo) => EnDecs.RangedInt64(boundOne, boundTwo);
+        public static IEnDec<float> Ranged(this IEnDec<float> _, float boundOne, float boundTwo) => EnDecs.RangedSingle(boundOne, boundTwo);
+        public static IEnDec<double> Ranged(this IEnDec<double> _, double boundOne, double boundTwo) => EnDecs.RangedDouble(boundOne, boundTwo);
+        public static IEnDec<decimal> Ranged(this IEnDec<decimal> _, decimal boundOne, decimal boundTwo) => EnDecs.RangedDecimal(boundOne, boundTwo);
         public static IEnDec<IList<T>> FixedLengthListOf<T>(this IEnDec<T> type, int fixedLength) => EnDecs.FixedLengthList(type, fixedLength);
         public static IEnDec<IOrderedDictionary<K, V>> FixedKeyMapOf<K, V>(this IEnDec<V> valueEnDec, IEnDec<K> keyEnDec, K[] fixedKeys) => EnDecs.FixedKeysMap(keyEnDec, valueEnDec, fixedKeys);
         public static IEnDec<IOrderedDictionary<string, T>> FixedKeyStringKeyedMapOf<T>(this IEnDec<T> valueEnDec, string[] fixedKeys) => EnDecs.FixedKeysStringKeyedMap(valueEnDec, fixedKeys);

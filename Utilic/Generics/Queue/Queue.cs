@@ -1,6 +1,4 @@
-﻿using GSR.Utilic.Math;
-
-namespace GSR.Utilic.Generic
+﻿namespace GSR.Utilic.Generic
 {
     public class Queue<T> : IQueue<T>
     {

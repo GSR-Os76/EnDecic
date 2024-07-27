@@ -14,7 +14,7 @@ namespace GSR.EnDecic
         public decimal DecodeDecimal(T stream);
         public string DecodeString(T stream);
         public IList<U> DecodeList<U>(T stream, IDecoder<U> elementDecoder);
-        public IOrderedDictionary<K,V> DecodeMap<K, V>(T stream, IDecoder<K> keyDecoder, IDecoder<V> valueDecoder);
+        public IOrderedDictionary<K, V> DecodeMap<K, V>(T stream, IDecoder<K> keyDecoder, IDecoder<V> valueDecoder);
         public U? DecodeNullable<U>(T stream, IDecoder<U> elementDecoder);
     } // end interface
 } // end namespace

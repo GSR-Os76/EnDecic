@@ -1,6 +1,5 @@
 ﻿using GSR.EnDecic;
 using GSR.EnDecic.Implementations;
-using GSR.EnDecic.Implementations.Primatives;
 using GSR.EnDecic.Jsonic;
 using GSR.Jsonic;
 using GSR.Utilic.Generic;
@@ -122,13 +121,13 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow(6)]
         public void TestDecimalInterconversion(int index)
         {
-            decimal[] values = new decimal[] { 
-                decimal.MinValue, 
-                (decimal)-23589, 
-                (decimal)-394923.43243, 
-                (decimal)0, 
-                (decimal)432432.984715, 
-                (decimal)086503, 
+            decimal[] values = new decimal[] {
+                decimal.MinValue,
+                (decimal)-23589,
+                (decimal)-394923.43243,
+                (decimal)0,
+                (decimal)432432.984715,
+                (decimal)086503,
                 decimal.MaxValue };
             Assert.AreEqual(values[index], EncodeThenDecodeJs(EnDecs.DECIMAL, values[index]));
         } // end TestDoubleInterconversion()
@@ -161,7 +160,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         [DataRow("ফव")]
         [DataRow("𒀣uव𓆉")]
         [DataRow(null)]
-        public void TestNullableStringInterconversion(string? value) 
+        public void TestNullableStringInterconversion(string? value)
         {
             Assert.AreEqual(value, EncodeThenDecodeJs(EnDecs.STRING.NullableOf(), value));
         } // end TestNullableStringInterconversion()

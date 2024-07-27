@@ -17,7 +17,7 @@
 
 
 
-        public IList<T> Decode<U>(IDecodingSet<U> codingSet, U stream) =>  codingSet.DecodeList(stream, _enDec);
+        public IList<T> Decode<U>(IDecodingSet<U> codingSet, U stream) => codingSet.DecodeList(stream, _enDec);
 
         public U Encode<U>(IEncodingSet<U> codingSet, IList<T> data) => codingSet.EncodeList(data, _enDec);
 

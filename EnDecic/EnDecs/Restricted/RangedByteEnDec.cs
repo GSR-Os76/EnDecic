@@ -17,12 +17,12 @@
 
         public byte Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
-            byte b = codingSet.DecodeByte(stream);
+            byte data = codingSet.DecodeByte(stream);
 
-            if (b < _min || b > _max)
-                throw new ArgumentOutOfRangeException($"Expected a byte betweed {_max} and {_min}, but retrieved {b}.");
+            if (data < _min || data > _max)
+                throw new ArgumentOutOfRangeException($"Expected a byte betweed {_max} and {_min}, but retrieved {data}.");
 
-            return b;
+            return data;
         } // end Decode()
 
         public U Encode<U>(IEncodingSet<U> codingSet, byte data)

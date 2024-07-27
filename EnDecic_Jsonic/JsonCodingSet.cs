@@ -73,13 +73,13 @@ namespace GSR.EnDecic.Jsonic
 
         public JsonElement EncodeList<U>(IList<U> data, IEncoder<U> elementEncoder) => new(new JsonArray(data.Select((x) => elementEncoder.Encode(this, x)).ToArray()));
 
-        public JsonElement EncodeMap<K, V>(IOrderedDictionary<K, V> data, IEncoder<K> keyEncoder, IEncoder<V> valueEncoder) 
+        public JsonElement EncodeMap<K, V>(IOrderedDictionary<K, V> data, IEncoder<K> keyEncoder, IEncoder<V> valueEncoder)
             => new(data
                 .Select((x) => Tuple.Create(keyEncoder.Encode(this, x.Key), valueEncoder.Encode(this, x.Value))) // map to the encoded kvp
                 .Aggregate(new JsonObject(), (seed, x) => seed.Add( // add kvp to a JsonObject
-                    _stringKeyedOnly 
+                    _stringKeyedOnly
                     ? x.Item1.Type == JsonType.String ? x.Item1.AsString() : throw new EncodingException($"Can't encode non-string keyed map with current settings. Try {nameof(JsonCodingSet)}.{nameof(INSTANCE)}.")
-                    : JsonString.FromUnescapedString( x.Item1.ToCompressedString()), // if key is string use directly as the key, else create json string holding the json for the encoded object.
+                    : JsonString.FromUnescapedString(x.Item1.ToCompressedString()), // if key is string use directly as the key, else create json string holding the json for the encoded object.
                     x.Item2)));
 
         public JsonElement EncodeNullable<U>(U? data, IEncoder<U> elementEncoder) => data is null ? new() : elementEncoder.Encode(this, data);

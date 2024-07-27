@@ -25,12 +25,17 @@ namespace GSR.EnDecic.Implementations
 
         #region Restricted
         public static IEnDec<byte> RangedByte(byte boundOne, byte boundTwo) => new RangedByteEnDec(boundOne, boundTwo);
+        public static IEnDec<short> RangedInt16(short boundOne, short boundTwo) => new RangedInt16EnDec(boundOne, boundTwo);
+        public static IEnDec<int> RangedInt32(int boundOne, int boundTwo) => new RangedInt32EnDec(boundOne, boundTwo);
+        public static IEnDec<long> RangedInt64(long boundOne, long boundTwo) => new RangedInt64EnDec(boundOne, boundTwo);
+        public static IEnDec<float> RangedSingle(float boundOne, float boundTwo) => new RangedSingleEnDec(boundOne, boundTwo);
+        public static IEnDec<double> RangedDouble(double boundOne, double boundTwo) => new RangedDoubleEnDec(boundOne, boundTwo);
+        public static IEnDec<decimal> RangedDecimal(decimal boundOne, decimal boundTwo) => new RangedDecimalEnDec(boundOne, boundTwo);
         public static IEnDec<IList<T>> FixedLengthList<T>(IEnDec<T> enDec, int length) => new FixedLengthListEnDec<T>(enDec, length);
         public static IEnDec<IOrderedDictionary<K, V>> FixedKeysMap<K, V>(IEnDec<K> keyEnDec, IEnDec<V> valueEnDec, K[] keys) => new FixedKeysMapEnDec<K, V>(keyEnDec, valueEnDec, keys);
         public static IEnDec<IOrderedDictionary<string, V>> FixedKeysStringKeyedMap<V>(IEnDec<V> valueEnDec, string[] keys) => new FixedKeysMapEnDec<string, V>(STRING, valueEnDec, keys);
         public static IEnDec<IOrderedDictionary<K, V>> ImpliedKeysMap<K, V>(IEnDec<V> valueEnDec, K[] fixedKeys) => new ImpliedKeysMapEnDec<K, V>(valueEnDec, fixedKeys);
         public static IEnDec<IOrderedDictionary<string, V>> ImpliedKeysStringKeyedMap<V>(IEnDec<V> valueEnDec, string[] fixedKeys) => new ImpliedKeysMapEnDec<string, V>(valueEnDec, fixedKeys);
-
         #endregion
 
         #region Other

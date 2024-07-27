@@ -2,7 +2,7 @@
 {
     public static class INumericExtensions
     {
-        public static IEnumerable<int> FactorialFactors(this int toFactorial) 
+        public static IEnumerable<int> FactorialFactors(this int toFactorial)
         {
             if (toFactorial <= 0)
                 throw new ArgumentException($"Expected postive non-zero argument for parameter: \"{toFactorial}\"");

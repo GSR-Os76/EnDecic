@@ -1,5 +1,4 @@
-﻿using GSR.EnDecic;
-using GSR.EnDecic.Implementations;
+﻿using GSR.EnDecic.Implementations;
 using GSR.EnDecic.Jsonic;
 using GSR.Jsonic;
 using GSR.Utilic.Generic;
@@ -10,9 +9,7 @@ namespace GSR.Tests.EnDecic.Jsonic
     [TestClass]
     public class TestRestrictingEnDecs
     {
-        public static readonly IEnDec<byte> BYTE_BETWEEN_2_AND_127_ENDEC = EnDecs.BYTE.Ranged((byte)2, (byte)127);
-        public static readonly IEnDec<byte> BYTE_BETWEEN_127_AND_2_ENDEC = EnDecs.BYTE.Ranged((byte)127, (byte)2);
-        public static readonly IEnDec<byte> BYTE_BETWEEN_93_AND_93_ENDEC = EnDecs.BYTE.Ranged((byte)93, (byte)93);
+        // ranged lists and ranged maps
 
 
         #region Vector3(Mapped, fixed length list) Tests
@@ -75,50 +72,92 @@ namespace GSR.Tests.EnDecic.Jsonic
         #region Range Tests
         #region Byte Tests
         [TestMethod]
-        [DataRow((byte)2, "2")]
-        [DataRow((byte)12, "12")]
-        [DataRow((byte)34, "34")]
-        [DataRow((byte)127, "127")]
-        public void TestByteRangeEnDecInRange(byte b, string expectation) 
+        [DataRow((byte)2, (byte)127, (byte)2, "2")]
+        [DataRow((byte)2, (byte)127, (byte)12, "12")]
+        [DataRow((byte)2, (byte)127, (byte)34, "34")]
+        [DataRow((byte)2, (byte)127, (byte)127, "127")]
+        [DataRow((byte)93, (byte)93, (byte)93, "93")]
+        public void TestByteRangeEnDecInRange(byte a, byte b, byte value, string json)
         {
-            Assert.AreEqual(expectation, BYTE_BETWEEN_2_AND_127_ENDEC.Encode(JsonCodingSet.INSTANCE, b).ToString());
-            Assert.AreEqual(expectation, BYTE_BETWEEN_127_AND_2_ENDEC.Encode(JsonCodingSet.INSTANCE, b).ToString());
+            Assert.AreEqual(json, EnDecs.RangedByte(a, b).Encode(JsonCodingSet.INSTANCE, value).ToString());
+            Assert.AreEqual(json, EnDecs.RangedByte(b, a).Encode(JsonCodingSet.INSTANCE, value).ToString());
+            Assert.AreEqual(value, EnDecs.RangedByte(b, a).Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json)));
+            Assert.AreEqual(value, EnDecs.RangedByte(b, a).Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json)));
         } // end TestByteRangeEnDecInRange()
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        [DataRow((byte)0)]
-        [DataRow((byte)1)]
-        [DataRow((byte)128)]
-        [DataRow((byte)255)]
-        public void TestByteRangeEnDecOutOfRange(byte b)
+        [DataRow((byte)2, (byte)127, (byte)0)]
+        [DataRow((byte)2, (byte)127, (byte)1)]
+        [DataRow((byte)2, (byte)127, (byte)128)]
+        [DataRow((byte)2, (byte)127, (byte)255)]
+        [DataRow((byte)93, (byte)93, (byte)0)]
+        [DataRow((byte)93, (byte)93, (byte)92)]
+        [DataRow((byte)93, (byte)93, (byte)94)]
+        [DataRow((byte)93, (byte)93, (byte)255)]
+        public void TestByteRangeEnDecEncodeOutOfRange(byte a, byte b, byte value)
         {
-            BYTE_BETWEEN_2_AND_127_ENDEC.Encode(JsonCodingSet.INSTANCE, b);
-            BYTE_BETWEEN_127_AND_2_ENDEC.Encode(JsonCodingSet.INSTANCE, b);
+            EnDecs.RangedByte(a, b).Encode(JsonCodingSet.INSTANCE, value);
         } // end TestByteRangeEnDecOutOfRange()
-
-
-
-        [TestMethod]
-        [DataRow((byte)93, "93")]
-        public void TestSingleValueByteRangeEnDecInRange(byte b, string expectation)
-        {
-            Assert.AreEqual(expectation, BYTE_BETWEEN_93_AND_93_ENDEC.Encode(JsonCodingSet.INSTANCE, b).ToString());
-        } // end TestSingleValueByteRangeEnDecInRange()
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        [DataRow((byte)0)]
-        [DataRow((byte)92)]
-        [DataRow((byte)94)]
-        [DataRow((byte)255)]
-        public void TestSingleValueByteRangeEnDecOutOfRange(byte b)
+        [DataRow((byte)2, (byte)127, "0")]
+        [DataRow((byte)2, (byte)127, "1")]
+        [DataRow((byte)2, (byte)127, "128")]
+        [DataRow((byte)2, (byte)127, "255")]
+        [DataRow((byte)93, (byte)93, "0")]
+        [DataRow((byte)93, (byte)93, "92")]
+        [DataRow((byte)93, (byte)93, "94")]
+        [DataRow((byte)93, (byte)93, "255")]
+        public void TestByteRangeEnDecDecodeOutOfRange(byte a, byte b, string json)
         {
-            BYTE_BETWEEN_93_AND_93_ENDEC.Encode(JsonCodingSet.INSTANCE, b);
-        } // end TestSingleValueByteRangeEnDecOutOfRange()
+            EnDecs.RangedByte(a, b).Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json));
+        } // end TestByteRangeEnDecDecodeOutOfRange()
 
         #endregion
 
+        #region Int16 Tests
+        [TestMethod]
+        [DataRow((short)-293, (short)4930, (short)-293, "-293")]
+        [DataRow((short)-293, (short)4930, (short)29, "29")]
+        [DataRow((short)-293, (short)4930, (short)1002, "1002")]
+        [DataRow((short)-293, (short)4930, (short)4930, "4930")]
+        [DataRow((short)4037, (short)4037, (short)4037, "4037")]
+        public void TestInt16RangeEnDecInRange(short a, short b, short value, string json)
+        {
+            Assert.AreEqual(json, EnDecs.RangedInt16(a, b).Encode(JsonCodingSet.INSTANCE, value).ToString());
+            Assert.AreEqual(json, EnDecs.RangedInt16(b, a).Encode(JsonCodingSet.INSTANCE, value).ToString());
+            Assert.AreEqual(value, EnDecs.RangedInt16(b, a).Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json)));
+            Assert.AreEqual(value, EnDecs.RangedInt16(b, a).Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json)));
+        } // end TestInt16RangeEnDecInRange()
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [DataRow((short)-293, (short)4930, (short)-294)]
+        [DataRow((short)4930, (short)-293, (short)-294)]
+        [DataRow((short)-293, (short)4930, (short)4931)]
+        [DataRow((short)4930, (short)-293, (short)4931)]
+        [DataRow((short)-35, (short)-35, (short)-36)]
+        [DataRow((short)-35, (short)-35, (short)-34)]
+        public void TestInt16RangeEnDecEncodeOutOfRange(short a, short b, short v)
+        {
+            EnDecs.RangedInt16(a, b).Encode(JsonCodingSet.INSTANCE, v);
+        } // end TestInt16RangeEnDecEncodeOutOfRange()
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [DataRow((short)-293, (short)4930, "-294")]
+        [DataRow((short)4930, (short)-293, "-294")]
+        [DataRow((short)-293, (short)4930, "4931")]
+        [DataRow((short)4930, (short)-293, "4931")]
+        [DataRow((short)-35, (short)-35, "-36")]
+        [DataRow((short)-35, (short)-35, "-34")]
+        public void TestInt16RangeEnDecDecodeOutOfRange(short a, short b, string json)
+        {
+            EnDecs.RangedInt16(a, b).Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json));
+        } // end TestInt16RangeEnDecEncodeOutOfRange()
+        #endregion
         #endregion
 
 

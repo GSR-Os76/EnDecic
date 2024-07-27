@@ -18,7 +18,7 @@ namespace GSR.EnDecic.Implementations.Primatives
 
 
 
-        public IOrderedDictionary<K, V> Decode<U>(IDecodingSet<U> codingSet, U stream) =>  codingSet.DecodeMap(stream, _keyEnDec, _valueEnDec);
+        public IOrderedDictionary<K, V> Decode<U>(IDecodingSet<U> codingSet, U stream) => codingSet.DecodeMap(stream, _keyEnDec, _valueEnDec);
 
         public U Encode<U>(IEncodingSet<U> codingSet, IOrderedDictionary<K, V> data) => codingSet.EncodeMap(data, _keyEnDec, _valueEnDec);
 
