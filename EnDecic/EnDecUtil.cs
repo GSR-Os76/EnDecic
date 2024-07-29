@@ -35,10 +35,9 @@ namespace GSR.EnDecic
 
 
         #region Niche
+        // seeming not possible to reflect on the bound type argument at runtime to find if it was marked nullable. nor can all users predict it without endlessly passing around some boolean value denoting it
         public static IEnDec<object?> NullableObjectEnDecOf<T>(this IEnDec<T> enDec) => enDec.Map(
-                (o) => Nullable.GetUnderlyingType(typeof(T)) != null
-                ? (T)o
-                : (T)(o ?? throw new ArgumentNullException()),
+                (o) =>(T)o,
                 (t) => (object?)t);
         #endregion
 

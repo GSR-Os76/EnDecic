@@ -1,13 +1,16 @@
-﻿namespace GSR.EnDecic.Implementations
+﻿using GSR.Utilic;
+using GSR.Utilic.Generic;
+
+namespace GSR.EnDecic.Implementations
 {
     /// <summary>
-    /// Statefully decodes and encodes elements using a different EnDecs each time, throw an exception if it decodes or encodes past the number of EnDecs it has.
+    /// Statefully encode and decodes elements by cycling throw the provider array of EnDecs, throwing an exception if decoding or encoding is attempted past the number of provided EnDecs.
     /// </summary>
     public sealed class StatefulPolyTypeEnDec : IEnDec<object?>
     {
         private readonly IEnDec<object?>[] _enDecs;
-        private int _decodeIndex;
-        private int _encodeIndex;
+        private int _decodeIndex = 0;
+        private int _encodeIndex = 0;
 
 
 
@@ -17,7 +20,8 @@
         /// <param name="enDecs">In order the EnDecs that'll be used.</param>
         public StatefulPolyTypeEnDec(params IEnDec<object?>[] enDecs)
         {
-            _enDecs = enDecs;
+            enDecs.RequireNotNull().ForEach((x) => x.RequireNotNull());
+            _enDecs = enDecs; 
         } // end constructor
 
 

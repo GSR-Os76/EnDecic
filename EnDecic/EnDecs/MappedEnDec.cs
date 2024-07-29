@@ -1,4 +1,6 @@
-﻿namespace GSR.EnDecic.Implementations
+﻿using GSR.Utilic;
+
+namespace GSR.EnDecic.Implementations
 {
     public sealed class MappedEnDec<T, F> : IEnDec<T>
     {
@@ -10,9 +12,9 @@
 
         public MappedEnDec(IEnDec<F> from, Func<T, F> encoder, Func<F, T> decoder)
         {
-            this._from = from;
-            this._encoder = encoder;
-            this._decoder = decoder;
+            _from = from.RequireNotNull();
+            _encoder = encoder.RequireNotNull();
+            _decoder = decoder.RequireNotNull();
         } // end constructor
 
 
