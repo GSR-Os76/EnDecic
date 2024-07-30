@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic", "EnDecic\EnDecic.csproj", "{3303F112-4AD8-4AE1-A143-462B6C16EA4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic", "EnDecic\EnDecic.csproj", "{3303F112-4AD8-4AE1-A143-462B6C16EA4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilic", "Utilic\Utilic.csproj", "{CC010B53-499B-481D-A229-4915B45BEAF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilic", "Utilic\Utilic.csproj", "{CC010B53-499B-481D-A229-4915B45BEAF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic_Jsonic", "EnDecic_Jsonic\EnDecic_Jsonic.csproj", "{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_Jsonic", "EnDecic_Jsonic\EnDecic_Jsonic.csproj", "{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilicTests", "UtilicTests\UtilicTests.csproj", "{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilicTests", "UtilicTests\UtilicTests.csproj", "{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic_JsonicTests", "EnDecic_JsonicTests\EnDecic_JsonicTests.csproj", "{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_JsonicTests", "EnDecic_JsonicTests\EnDecic_JsonicTests.csproj", "{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependecies", "Dependecies", "{244E2402-069E-4F44-8595-65CC67F16A2B}"
 EndProject
@@ -19,12 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jsonic", "Jsonic", "{04C2B3
 	ProjectSection(SolutionItems) = preProject
 		..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.deps.json = ..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.deps.json
 		..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.dll = ..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.dll
-		..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.pdb = ..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.pdb
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic_ByteStream", "Endecic_ByteStream\EnDecic_ByteStream.csproj", "{1F4301DC-C40C-431C-BB1E-501FC3FC0A33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_ByteStream", "Endecic_ByteStream\EnDecic_ByteStream.csproj", "{1F4301DC-C40C-431C-BB1E-501FC3FC0A33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnDecic_ByteStreamTests", "EnDecic_ByteStreamTests\EnDecic_ByteStreamTests.csproj", "{F84B2F02-6BC5-4AC9-B5EF-34B4EF22E9BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_ByteStreamTests", "EnDecic_ByteStreamTests\EnDecic_ByteStreamTests.csproj", "{F84B2F02-6BC5-4AC9-B5EF-34B4EF22E9BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

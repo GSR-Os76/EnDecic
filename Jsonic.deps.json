@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "Jsonic/2.2.0.0": {
+      "Jsonic/2.2.1.0": {
         "runtime": {
           "Jsonic.dll": {}
         }
@@ -14,7 +14,7 @@
     }
   },
   "libraries": {
-    "Jsonic/2.2.0.0": {
+    "Jsonic/2.2.1.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
