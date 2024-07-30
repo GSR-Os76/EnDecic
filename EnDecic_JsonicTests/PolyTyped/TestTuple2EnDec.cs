@@ -3,11 +3,12 @@ using GSR.EnDecic;
 using GSR.EnDecic.Jsonic;
 using GSR.Jsonic;
 using System.Numerics;
+using GSR.Tests.EnDecic.Jsonic;
 
 namespace GSR.Tests.EnDecic.Jsonic
 {
     [TestClass]
-    public class TestTuple2
+    public class TestTuple2EnDec
     {
         public static readonly IEnDec<Tuple<int, string>> INT_STRING = EnDecs.Tuple(EnDecs.INT_32, EnDecs.STRING);
         public static readonly IEnDec<Tuple<Vector3, string?>> VECTOR3_STRING_NN = EnDecs.Tuple(TestingEnDecs.VECTOR_3.NullableOf(), EnDecs.STRING.NullableOf());
