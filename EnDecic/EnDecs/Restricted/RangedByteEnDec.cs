@@ -1,4 +1,6 @@
-﻿namespace GSR.EnDecic.Implementations.Restricted
+﻿using GSR.Utilic;
+
+namespace GSR.EnDecic.Implementations.Restricted
 {
     public sealed class RangedByteEnDec : IEnDec<byte>
     {
@@ -17,7 +19,7 @@
 
         public byte Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
-            byte data = codingSet.DecodeByte(stream);
+            byte data = codingSet.IsNotNull().DecodeByte(stream.IsNotNull());
 
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a byte betweed {_max} and {_min}, but retrieved {data}.");
@@ -30,7 +32,7 @@
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a byte betweed {_max} and {_min}, but got {data}.");
 
-            return codingSet.EncodeByte(data);
+            return codingSet.IsNotNull().EncodeByte(data);
         } // end Encode()
 
     } // end class

@@ -1,4 +1,6 @@
-﻿namespace GSR.EnDecic.Implementations.Primatives
+﻿using GSR.Utilic;
+
+namespace GSR.EnDecic.Implementations.Primatives
 {
     public sealed class NullableEnDec<T> : IEnDec<T?>
     {
@@ -8,13 +10,13 @@
 
         public NullableEnDec(IEnDec<T> enDec)
         {
-            _enDec = enDec;
+            _enDec = enDec.IsNotNull();
         } // end constructor
 
 
 
-        public T? Decode<U>(IDecodingSet<U> codingSet, U stream) => codingSet.DecodeNullable(stream, _enDec);
+        public T? Decode<U>(IDecodingSet<U> codingSet, U stream) => codingSet.IsNotNull().DecodeNullable(stream.IsNotNull(), _enDec);
 
-        public U Encode<U>(IEncodingSet<U> codingSet, T? data) => codingSet.EncodeNullable(data, _enDec);
+        public U Encode<U>(IEncodingSet<U> codingSet, T? data) => codingSet.IsNotNull().EncodeNullable(data, _enDec);
     } // end class
 } // end namespace

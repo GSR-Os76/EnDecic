@@ -1,4 +1,6 @@
-﻿namespace GSR.EnDecic.Implementations.Restricted
+﻿using GSR.Utilic;
+
+namespace GSR.EnDecic.Implementations.Restricted
 {
     public sealed class RangedDoubleEnDec : IEnDec<double>
     {
@@ -17,7 +19,7 @@
 
         public double Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
-            double data = codingSet.DecodeDouble(stream);
+            double data = codingSet.IsNotNull().DecodeDouble(stream.IsNotNull());
 
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a number betweed {_max} and {_min}, but retrieved {data}.");
@@ -30,7 +32,7 @@
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a number betweed {_max} and {_min}, but got {data}.");
 
-            return codingSet.EncodeDouble(data);
+            return codingSet.IsNotNull().EncodeDouble(data);
         } // end Encode()
 
     } // end class

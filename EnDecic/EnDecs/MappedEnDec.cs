@@ -12,15 +12,15 @@ namespace GSR.EnDecic.Implementations
 
         public MappedEnDec(IEnDec<F> from, Func<T, F> encoder, Func<F, T> decoder)
         {
-            _from = from.RequireNotNull();
-            _encoder = encoder.RequireNotNull();
-            _decoder = decoder.RequireNotNull();
+            _from = from.IsNotNull();
+            _encoder = encoder.IsNotNull();
+            _decoder = decoder.IsNotNull();
         } // end constructor
 
 
 
-        public T Decode<U>(IDecodingSet<U> codingSet, U stream) => _decoder.Invoke(_from.Decode(codingSet, stream));
+        public T Decode<U>(IDecodingSet<U> codingSet, U stream) => _decoder.Invoke(_from.Decode(codingSet.IsNotNull(), stream.IsNotNull()));
 
-        public U Encode<U>(IEncodingSet<U> codingSet, T data) => _from.Encode(codingSet, _encoder.Invoke(data));
+        public U Encode<U>(IEncodingSet<U> codingSet, T data) => _from.Encode(codingSet.IsNotNull(), _encoder.Invoke(data));
     } // end class
 } // end namespace

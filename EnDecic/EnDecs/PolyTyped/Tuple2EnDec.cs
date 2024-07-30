@@ -17,8 +17,8 @@ namespace GSR.EnDecic.Implementations
 
         public Tuple2EnDec(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec)
         {
-            _t1EnDec = t1EnDec.RequireNotNull();
-            _t2EnDec = t2EnDec.RequireNotNull();
+            _t1EnDec = t1EnDec.IsNotNull();
+            _t2EnDec = t2EnDec.IsNotNull();
             _ptEnDec = new StatefulPolyTypeEnDec(
                 _t1EnDec.NullableObjectEnDecOf(),
                 _t2EnDec.NullableObjectEnDecOf());
@@ -28,7 +28,7 @@ namespace GSR.EnDecic.Implementations
 
         public Tuple<T1?, T2?> Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
-            IList<object?> o = codingSet.DecodeList(stream, _ptEnDec.ResetDecoding());
+            IList<object?> o = codingSet.IsNotNull().DecodeList(stream.IsNotNull(), _ptEnDec.ResetDecoding());
             if (o.Count != 2)
                 throw new InvalidOperationException("Decoded list had more than two elements.");
 
@@ -37,8 +37,8 @@ namespace GSR.EnDecic.Implementations
                 (T2?)o[1]);
         } // end Decode()
 
-        public U Encode<U>(IEncodingSet<U> codingSet, Tuple<T1?, T2?> data) => codingSet.EncodeList(new List<object?>() {
-                data.Item1,
+        public U Encode<U>(IEncodingSet<U> codingSet, Tuple<T1?, T2?> data) => codingSet.IsNotNull().EncodeList(new List<object?>() {
+                data.IsNotNull().Item1,
                 data.Item2}, _ptEnDec.ResetEncoding());
 
     } // end class

@@ -1,4 +1,5 @@
-﻿using GSR.Utilic.Generic;
+﻿using GSR.Utilic;
+using GSR.Utilic.Generic;
 using System.Collections.Immutable;
 
 namespace GSR.EnDecic.Implementations.Restricted
@@ -12,15 +13,15 @@ namespace GSR.EnDecic.Implementations.Restricted
 
         public ImpliedKeysMapEnDec(IEnDec<V> valueEnDec, K[] keys)
         {
-            _valueEnDec = valueEnDec;
-            _keys = keys;
+            _valueEnDec = valueEnDec.IsNotNull();
+            _keys = keys.IsNotNull();
         } // end constructor()
 
 
 
         public IDictionary<K, V> Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
-            IList<V> data = codingSet.DecodeList(stream, _valueEnDec);
+            IList<V> data = codingSet.IsNotNull().DecodeList(stream.IsNotNull(), _valueEnDec);
 
             if ((data.Count != _keys.Length))
                 throw new ArgumentException($"Read {data.Count} values, but was expecting: {_keys.Length}");
@@ -30,10 +31,10 @@ namespace GSR.EnDecic.Implementations.Restricted
 
         public U Encode<U>(IEncodingSet<U> codingSet, IDictionary<K, V> data)
         {
-            if ((data.Keys.Count != _keys.Length) || !data.Keys.All((x) => _keys.Contains(x)))
+            if ((data.IsNotNull().Keys.Count != _keys.Length) || !data.Keys.All((x) => _keys.Contains(x)))
                 throw new ArgumentException($"Can't write dictionary with keys not matching: {_keys}.");
 
-            return codingSet.EncodeList(data.Values.ToImmutableList(), _valueEnDec);
+            return codingSet.IsNotNull().EncodeList(data.Values.ToImmutableList(), _valueEnDec);
         } // end Encode()
 
     } // end class

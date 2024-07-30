@@ -20,15 +20,15 @@ namespace GSR.EnDecic.Implementations
         /// <param name="enDecs">In order the EnDecs that'll be used.</param>
         public StatefulPolyTypeEnDec(params IEnDec<object?>[] enDecs)
         {
-            enDecs.RequireNotNull().ForEach((x) => x.RequireNotNull());
+            enDecs.IsNotNull().ForEach((x) => x.IsNotNull());
             _enDecs = enDecs; 
         } // end constructor
 
 
 
-        public object? Decode<U>(IDecodingSet<U> codingSet, U stream) => _enDecs[_decodeIndex++].Decode(codingSet, stream);
+        public object? Decode<U>(IDecodingSet<U> codingSet, U stream) => _enDecs[_decodeIndex++].Decode(codingSet.IsNotNull(), stream.IsNotNull());
 
-        public U Encode<U>(IEncodingSet<U> codingSet, object? data) => _enDecs[_encodeIndex++].Encode(codingSet, data);
+        public U Encode<U>(IEncodingSet<U> codingSet, object? data) => _enDecs[_encodeIndex++].Encode(codingSet.IsNotNull(), data);
 
 
 

@@ -1,4 +1,6 @@
-﻿namespace GSR.EnDecic.Implementations.Restricted
+﻿using GSR.Utilic;
+
+namespace GSR.EnDecic.Implementations.Restricted
 {
     public sealed class RangedSingleEnDec : IEnDec<float>
     {
@@ -17,7 +19,7 @@
 
         public float Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
-            float data = codingSet.DecodeSingle(stream);
+            float data = codingSet.IsNotNull().DecodeSingle(stream.IsNotNull());
 
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a number betweed {_max} and {_min}, but retrieved {data}.");
@@ -30,7 +32,7 @@
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a number betweed {_max} and {_min}, but got {data}.");
 
-            return codingSet.EncodeSingle(data);
+            return codingSet.IsNotNull().EncodeSingle(data);
         } // end Encode()
 
     } // end class

@@ -1,4 +1,6 @@
-﻿namespace GSR.EnDecic.Implementations.Restricted
+﻿using GSR.Utilic;
+
+namespace GSR.EnDecic.Implementations.Restricted
 {
     public sealed class RangedInt32EnDec : IEnDec<int>
     {
@@ -17,7 +19,7 @@
 
         public int Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
-            int data = codingSet.DecodeInt32(stream);
+            int data = codingSet.IsNotNull().DecodeInt32(stream.IsNotNull());
 
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a integer betweed {_max} and {_min}, but retrieved {data}.");
@@ -30,7 +32,7 @@
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a integer betweed {_max} and {_min}, but got {data}.");
 
-            return codingSet.EncodeInt32(data);
+            return codingSet.IsNotNull().EncodeInt32(data);
         } // end Encode()
 
     } // end class
