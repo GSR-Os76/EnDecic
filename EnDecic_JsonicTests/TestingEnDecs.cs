@@ -1,6 +1,5 @@
 ﻿using GSR.EnDecic;
 using GSR.EnDecic.Implementations;
-using GSR.Utilic.Generic;
 using System.Numerics;
 
 namespace GSR.Tests.EnDecic.Jsonic

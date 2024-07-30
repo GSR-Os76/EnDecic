@@ -1,6 +1,4 @@
-﻿using GSR.Utilic.Generic;
-
-namespace GSR.EnDecic
+﻿namespace GSR.EnDecic
 {
     public interface IDecodingSet<T>
     {

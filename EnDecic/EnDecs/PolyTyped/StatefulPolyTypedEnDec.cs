@@ -1,7 +1,7 @@
 ﻿using GSR.Utilic;
 using GSR.Utilic.Generic;
 
-namespace GSR.EnDecic.Implementations
+namespace GSR.EnDecic.Implementations.PolyTyped
 {
     /// <summary>
     /// Statefully encode and decodes elements by cycling throw the provider array of EnDecs, throwing an exception if decoding or encoding is attempted past the number of provided EnDecs.
@@ -21,7 +21,7 @@ namespace GSR.EnDecic.Implementations
         public StatefulPolyTypeEnDec(params IEnDec<object?>[] enDecs)
         {
             enDecs.IsNotNull().ForEach((x) => x.IsNotNull());
-            _enDecs = enDecs; 
+            _enDecs = enDecs;
         } // end constructor
 
 

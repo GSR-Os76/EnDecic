@@ -1,5 +1,6 @@
 ﻿using GSR.EnDecic;
 using GSR.EnDecic.Implementations;
+using GSR.EnDecic.Implementations.PolyTyped;
 using GSR.EnDecic.Jsonic;
 using GSR.Jsonic;
 using GSR.Utilic;
@@ -7,7 +8,7 @@ using GSR.Utilic;
 namespace GSR.Tests.EnDecic.Jsonic
 {
     [TestClass]
-    public class TestPolyTypedEnDec
+    public class TestStatefulPolyTypedEnDec
     {
         #region Encode Tests
         [TestMethod]

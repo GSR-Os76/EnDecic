@@ -37,7 +37,7 @@ namespace GSR.EnDecic.ByteStream
         public long DecodeInt64(IQueue<byte> stream) => BitConverter.ToInt64(stream.IsNotNull().Dequeue(8), 0);
 
         public IList<U> DecodeList<U>(IQueue<byte> stream, IDecoder<U> elementTypeDecoder) => DecodeInt32(stream.IsNotNull()).XTimes<object>().Select((x) => elementTypeDecoder.IsNotNull().Decode(this, stream)).ToImmutableList();
-        
+
         /// <inheritdoc/>
         public IDictionary<K, V> DecodeMap<K, V>(IQueue<byte> stream, IDecoder<K> keyTypeDecoder, IDecoder<V> valueTypeDecoder) => new ImmutableOrderedDictionary<K, V>(DecodeInt32(stream.IsNotNull()).XTimes<object>().Select((x) => KeyValuePair.Create(keyTypeDecoder.IsNotNull().Decode(this, stream), valueTypeDecoder.IsNotNull().Decode(this, stream))).ToArray());
 

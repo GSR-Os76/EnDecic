@@ -1,6 +1,6 @@
-﻿using GSR.EnDecic.Implementations.Primatives;
+﻿using GSR.EnDecic.Implementations.PolyTyped;
+using GSR.EnDecic.Implementations.Primatives;
 using GSR.EnDecic.Implementations.Restricted;
-using GSR.Utilic.Generic;
 
 namespace GSR.EnDecic.Implementations
 {
@@ -38,8 +38,13 @@ namespace GSR.EnDecic.Implementations
         public static IEnDec<IDictionary<string, V>> ImpliedKeysStringKeyedMap<V>(IEnDec<V> valueEnDec, string[] fixedKeys) => new ImpliedKeysMapEnDec<string, V>(valueEnDec, fixedKeys);
         #endregion
 
-        #region Other
-        public static IEnDec<Tuple<T1, T2>> Tuple<T1, T2>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec) => new Tuple2EnDec<T1, T2>(t1EnDec, t2EnDec);
+        #region PolyTyped
+        public static IEnDec<Tuple<T1?, T2?>> Tuple<T1, T2>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec) => new Tuple2EnDec<T1, T2>(t1EnDec, t2EnDec);
+        public static IEnDec<Tuple<T1?, T2?, T3?>> Tuple<T1, T2, T3>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec) => new Tuple3EnDec<T1, T2, T3>(t1EnDec, t2EnDec, t3EnDec);
+        public static IEnDec<Tuple<T1?, T2?, T3?, T4?>> Tuple<T1, T2, T3, T4>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec) => new Tuple4EnDec<T1, T2, T3, T4>(t1EnDec, t2EnDec, t3EnDec, t4EnDec);
+        public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?>> Tuple<T1, T2, T3, T4, T5>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec) => new Tuple5EnDec<T1, T2, T3, T4, T5>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec);
+        public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?, T6?>> Tuple<T1, T2, T3, T4, T5, T6>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec, IEnDec<T6> t6EnDec) => new Tuple6EnDec<T1, T2, T3, T4, T5, T6>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec, t6EnDec);
+        public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?, T6?, T7?>> Tuple<T1, T2, T3, T4, T5, T6, T7>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec, IEnDec<T6> t6EnDec, IEnDec<T7> t7EnDec) => new Tuple7EnDec<T1, T2, T3, T4, T5, T6, T7>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec, t6EnDec, t7EnDec);
 
 
 
