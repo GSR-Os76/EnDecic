@@ -13,7 +13,7 @@ namespace GSR.Tests.EnDecic.Jsonic
         public static readonly IEnDec<Tuple<Vector3, string?>> VECTOR3_STRING_NN = EnDecs.Tuple(TestingEnDecs.VECTOR_3.NullableOf(), EnDecs.STRING.NullableOf());
 
 
-
+#pragma warning disable CS8620 // mistmatch of nullabilty
         [TestMethod]
         [DataRow(0, "", "[0,\"\"]")]
         [DataRow(-249001, "7023", "[-249001,\"7023\"]")]
@@ -56,6 +56,7 @@ namespace GSR.Tests.EnDecic.Jsonic
             Assert.AreEqual(Tuple.Create(expectationA, expectationB), INT_STRING.Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json)));
             Assert.AreEqual(Tuple.Create(expectationC, expectationD), INT_STRING.Decode(JsonCodingSet.INSTANCE, JsonElement.ParseJson(json2)));
         } // end TestDecode()
+#pragma warning restore CS8620
 
         [TestMethod]
         public void TestDecodeNullValid1()

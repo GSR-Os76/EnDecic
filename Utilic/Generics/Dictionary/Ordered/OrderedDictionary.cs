@@ -35,17 +35,18 @@ namespace GSR.Utilic.Generic
 
         public bool IsReadOnly => false;
 
+        public OrderedDictionary() { } // end constructor
 
+        public OrderedDictionary(params KeyValuePair<TKey, TValue>[] valuePairs) : this((IEnumerable<KeyValuePair<TKey, TValue>>)valuePairs) { }
 
         public OrderedDictionary(IEnumerable<KeyValuePair<TKey, TValue>> entries)
         {
             if (entries.Select((x) => x.Key).AnyRepeats())
-                throw new ArgumentException("Entries must be uniquely keyed");
+                throw new ArgumentException("Entries must be uniquely keyed.");
 
             entries.ForEach((x) => _entries.Add(x));
         } // end constructor
 
-        public OrderedDictionary() { } // end constructor
 
 
 
@@ -54,7 +55,7 @@ namespace GSR.Utilic.Generic
         public void Add(KeyValuePair<TKey, TValue> item)
         {
             if (ContainsKey(item.Key))
-                throw new ArgumentException($"Key already contained: \"{item.Key}\"");
+                throw new ArgumentException($"Key already contained: \"{item.Key}\".");
 
             _entries.Add(item);
         } // end Add()
@@ -75,7 +76,7 @@ namespace GSR.Utilic.Generic
         {
             for (int i = 0; i < _entries.Count; i++)
                 if (i != index && (item.Key?.Equals(_entries[i].Key) ?? throw new ArgumentNullException()))
-                    throw new ArgumentException($"Key already contained: \"{item.Key}\"");
+                    throw new ArgumentException($"Key already contained: \"{item.Key}\".");
 
             _entries.Insert(index, item);
         } // end Insert()

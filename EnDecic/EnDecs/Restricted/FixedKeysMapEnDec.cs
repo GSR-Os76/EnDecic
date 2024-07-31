@@ -24,7 +24,7 @@ namespace GSR.EnDecic.Implementations.Restricted
             IDictionary<K, V> data = codingSet.IsNotNull().DecodeMap(stream.IsNotNull(), _keyEnDec, _valueEnDec);
 
             if ((data.Keys.Count != _keys.Length) || !data.Keys.All((x) => _keys.Contains(x)))
-                throw new ArgumentException($"Invalid map read, keys not matching: {_keys}");
+                throw new ArgumentException($"Invalid map read, keys not matching: {_keys}.");
 
             return data;
         } // end Decode()
@@ -32,7 +32,7 @@ namespace GSR.EnDecic.Implementations.Restricted
         public U Encode<U>(IEncodingSet<U> codingSet, IDictionary<K, V> data)
         {
             if ((data.IsNotNull().Keys.Count != _keys.Length) || !data.Keys.All((x) => _keys.Contains(x)))
-                throw new ArgumentException($"Can't write dictionary with keys not matching: {_keys}");
+                throw new ArgumentException($"Can't write dictionary with keys not matching: {_keys}.");
 
             return codingSet.IsNotNull().EncodeMap(data, _keyEnDec, _valueEnDec);
         } // end Encode()

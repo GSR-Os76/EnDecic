@@ -35,9 +35,13 @@ namespace GSR.EnDecic
 
         #region Niche
         // seeming not possible to reflect on the bound type argument at runtime to find if it was marked nullable. nor can all users predict it without endlessly passing around some boolean value denoting it
+#pragma warning disable CS8600
+#pragma warning disable CS8603
         public static IEnDec<object?> NullableObjectEnDecOf<T>(this IEnDec<T> enDec) => enDec.Map(
                 (o) => (T)o,
                 (t) => (object?)t);
+#pragma warning restore CS8600
+#pragma warning restore CS8603
         #endregion
 
     } // end class
