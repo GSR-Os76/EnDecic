@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Utilic">
-      <HintPath>..\Utilic.dll</HintPath>
+    <Reference Include="GSR.Utilic">
+      <HintPath>..\GSR.Utilic.dll</HintPath>
     </Reference>
   </ItemGroup>
 

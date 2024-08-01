@@ -13,8 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependecies", "Dependecies"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jsonic", "Jsonic", "{04C2B30A-0C41-4F72-9B9F-8E3846BEA7A9}"
 	ProjectSection(SolutionItems) = preProject
-		..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.deps.json = ..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.deps.json
-		..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.dll = ..\Jsonic\Jsonic\bin\Debug\net6.0\Jsonic.dll
+		GSR.Jsonic.deps.json = GSR.Jsonic.deps.json
+		GSR.Jsonic.dll = GSR.Jsonic.dll
+		GSR.Jsonic.xml = GSR.Jsonic.xml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_ByteStream", "Endecic_ByteStream\EnDecic_ByteStream.csproj", "{1F4301DC-C40C-431C-BB1E-501FC3FC0A33}"
@@ -23,9 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_ByteStreamTests", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilic", "Utilic", "{070C8C4B-B17A-4CAC-A1D6-77359D5D23EE}"
 	ProjectSection(SolutionItems) = preProject
-		..\Utilic\Utilic\bin\Debug\net6.0\Utilic.deps.json = ..\Utilic\Utilic\bin\Debug\net6.0\Utilic.deps.json
-		..\Utilic\Utilic\bin\Debug\net6.0\Utilic.dll = ..\Utilic\Utilic\bin\Debug\net6.0\Utilic.dll
-		..\Utilic\Utilic\bin\Debug\net6.0\Utilic.xml = ..\Utilic\Utilic\bin\Debug\net6.0\Utilic.xml
+		GSR.Utilic.deps.json = GSR.Utilic.deps.json
+		GSR.Utilic.dll = GSR.Utilic.dll
+		GSR.Utilic.xml = GSR.Utilic.xml
 	EndProjectSection
 EndProject
 Global

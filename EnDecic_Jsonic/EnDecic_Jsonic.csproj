@@ -14,6 +14,7 @@
     <RepositoryUrl>https://github.com/GSR-Os76/EnDecic/</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyName>GSR.EnDecic.Jsonic</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,11 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Jsonic">
-      <HintPath>..\Jsonic.dll</HintPath>
+    <Reference Include="GSR.Jsonic">
+      <HintPath>..\GSR.Jsonic.dll</HintPath>
     </Reference>
-    <Reference Include="Utilic">
-      <HintPath>..\Utilic.dll</HintPath>
+    <Reference Include="GSR.Utilic">
+      <HintPath>..\GSR.Utilic.dll</HintPath>
     </Reference>
   </ItemGroup>
 

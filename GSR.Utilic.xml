@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Utilic</name>
+        <name>GSR.Utilic</name>
     </assembly>
     <members>
         <member name="T:GSR.Utilic.Generic.IOrderedDictionary`2">

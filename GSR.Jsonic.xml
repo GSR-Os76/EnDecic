@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GSR.Jsonic</name>
+    </assembly>
+    <members>
+        <member name="M:GSR.Jsonic.IJsonComponent.ToCompressedString">
+            <summary>
+            Write the object to json format without any formatting white space, but without changing the value it represents..
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GSR.Jsonic.JsonArray.ToCompressedString">
+            <inheritdoc/>
+        </member>
+        <member name="M:GSR.Jsonic.JsonArray.ParseJson(System.String,System.String@)">
+            <summary>
+            Parse the element at the beginning of a string.
+            </summary>
+            <param name="json">The input string.</param>
+            <param name="remainder">The unmodified section of string trailing the leading value.</param>
+            <returns>A JsonArray containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">A value couldn't be recognized at the string's beginning, or an error occured while parsing the predicted value.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonArray.ParseJson(System.String)">
+            <summary>
+            Reads all of a string as a single Json value with no superfluous non-whitespace characters.
+            </summary>
+            <param name="json">The input string.</param>
+            <returns>A JsonArray containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">If parsing of a value wasn't possible, or there were trailing characters.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonBoolean.ToCompressedString">
+            <inheritdoc/>
+        </member>
+        <member name="M:GSR.Jsonic.JsonBoolean.ParseJson(System.String,System.String@)">
+            <summary>
+            Parse the element at the beginning of a string.
+            </summary>
+            <param name="json">The input string.</param>
+            <param name="remainder">The unmodified section of string trailing the leading value.</param>
+            <returns>A JsonBoolean containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">A value couldn't be recognized at the string's beginning, or an error occured while parsing the predicted value.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonBoolean.ParseJson(System.String)">
+            <summary>
+            Reads all of a string as a single Json value with no superfluous non-whitespace characters.
+            </summary>
+            <param name="json">The input string.</param>
+            <returns>A JsonBoolean containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">If parsing of a value wasn't possible, or there were trailing characters.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonElement.ToCompressedString">
+            <inheritdoc/>
+        </member>
+        <member name="M:GSR.Jsonic.JsonElement.ParseJson(System.String,System.String@)">
+            <summary>
+            Parse the element at the beginning of a string.
+            </summary>
+            <param name="json">The input string.</param>
+            <param name="remainder">The unmodified section of string trailing the leading value.</param>
+            <returns>A JsonElement containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">A value couldn't be recognized at the string's beginning, or an error occured while parsing the predicted value.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonElement.ParseJson(System.String)">
+            <summary>
+            Reads all of a string as a single Json value with no superfluous non-whitespace characters.
+            </summary>
+            <param name="json">The input string.</param>
+            <returns>A JsonElement containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">If parsing of a value wasn't possible, or there were trailing characters.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonNull.ParseJson(System.String,System.String@)">
+            <summary>
+            Parse the element at the beginning of a string.
+            </summary>
+            <param name="json">The input string.</param>
+            <param name="remainder">The unmodified section of string trailing the leading value.</param>
+            <returns>A JsonNull containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">A value couldn't be recognized at the string's beginning, or an error occured while parsing the predicted value.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonNull.ParseJson(System.String)">
+            <summary>
+            Reads all of a string as a single Json value with no superfluous non-whitespace characters.
+            </summary>
+            <param name="json">The input string.</param>
+            <returns>A JsonNull containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">If parsing of a value wasn't possible, or there were trailing characters.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonNumber.ToCompressedString">
+            <inheritdoc/>
+        </member>
+        <member name="M:GSR.Jsonic.JsonNumber.Equals(System.Object)">
+            <summary>
+            Compares by string, not by the represented value.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GSR.Jsonic.JsonNumber.ParseJson(System.String,System.String@)">
+            <summary>
+            Parse the number at the beginning of a string.
+            </summary>
+            <param name="json">The input string.</param>
+            <param name="remainder">The unmodified section of string trailing the leading value.</param>
+            <returns>A JsonNumber containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">A value couldn't be recognized at the string's beginning, or an error occured while parsing the predicted value.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonNumber.ParseJson(System.String)">
+            <summary>
+            Reads all of a string as a single Json value with no superfluous non-whitespace characters.
+            </summary>
+            <param name="json">The input string.</param>
+            <returns>A JsonNumber containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">If parsing of a value wasn't possible, or there were trailing characters.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonObject.AddNull(System.String)">
+            <summary>
+            Adds a null element to the object.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GSR.Jsonic.JsonObject.AddNull(GSR.Jsonic.JsonString)">
+            <summary>
+            Adds a null element to the object.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GSR.Jsonic.JsonObject.Remove(GSR.Jsonic.JsonString)">
+            <summary>
+            Does nothing if not contained, else remove value paired with the key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GSR.Jsonic.JsonObject.ParseJson(System.String,System.String@)">
+            <summary>
+            Parse the element at the beginning of a string.
+            </summary>
+            <param name="json">The input string.</param>
+            <param name="remainder">The unmodified section of string trailing the leading value.</param>
+            <returns>A JsonObject containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">A value couldn't be recognized at the string's beginning, or an error occured while parsing the predicted value.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonObject.ParseJson(System.String)">
+            <summary>
+            Reads all of a string as a single Json value with no superfluous non-whitespace characters.
+            </summary>
+            <param name="json">The input string.</param>
+            <returns>A JsonObject containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">If parsing of a value wasn't possible, or there were trailing characters.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonString.#ctor(System.String)">
+            <summary>
+            Constructs a JsonString with a given value.
+            </summary>
+            <param name="value">The Json compatibly formatted string the Json string represents.</param>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">String wasn't in valid Json string format.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonString.ToUnescapedString">
+            <summary>
+            Unescapes escaped characters, turning the Json string into the string it represents.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GSR.Jsonic.JsonString.FromUnescapedString(System.String)">
+            <summary>
+            Escapes all unescaped characters necessary, turning it into an equivalent string that represents it.
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GSR.Jsonic.JsonString.ToCompressedString">
+            <inheritdoc/>
+        </member>
+        <member name="M:GSR.Jsonic.JsonString.ParseJson(System.String,System.String@)">
+            <summary>
+            Parse the element at the beginning of a string.
+            </summary>
+            <param name="json">The input string.</param>
+            <param name="remainder">The unmodified section of string trailing the leading value.</param>
+            <returns>A JsonString containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">A value couldn't be recognized at the string's beginning, or an error occured while parsing the predicted value.</exception>
+        </member>
+        <member name="M:GSR.Jsonic.JsonString.ParseJson(System.String)">
+            <summary>
+            Reads all of a string as a single Json value with no superfluous non-whitespace characters.
+            </summary>
+            <param name="json">The input string.</param>
+            <returns>A JsonString containing the parsed Json value.</returns>
+            <exception cref="T:GSR.Jsonic.MalformedJsonException">If parsing of a value wasn't possible, or there were trailing characters.</exception>
+        </member>
+    </members>
+</doc>

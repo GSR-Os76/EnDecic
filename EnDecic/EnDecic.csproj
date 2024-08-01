@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,6 +15,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/GSR-Os76/EnDecic/</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyName>GSR.EnDecic</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Utilic">
-      <HintPath>..\Utilic.dll</HintPath>
+    <Reference Include="GSR.Utilic">
+      <HintPath>..\GSR.Utilic.dll</HintPath>
     </Reference>
   </ItemGroup>
 

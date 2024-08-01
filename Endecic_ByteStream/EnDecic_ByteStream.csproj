@@ -15,6 +15,7 @@
     <RepositoryUrl>https://github.com/GSR-Os76/EnDecic/</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RootNamespace>GSR.EnDecic.ByteStream</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,8 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Utilic">
-      <HintPath>..\Utilic.dll</HintPath>
+    <Reference Include="GSR.Utilic">
+      <HintPath>..\GSR.Utilic.dll</HintPath>
     </Reference>
   </ItemGroup>
 
