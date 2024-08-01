@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace GSR.Tests.EnDecic.Jsonic
 {
-    public class TestingEnDecs
+    internal static class TestingEnDecs
     {
         public static readonly IEnDec<IDictionary<string, string>?> NULLABLE_STRING_STRING_MAP = EnDecs.STRING.StringKeyedMapOf().NullableOf();
         public static readonly IEnDec<Vector3> VECTOR_3 = EnDecs.SINGLE.FixedLengthListOf(3).Map((v) => new List<float>() { v.X, v.Y, v.Z }, (l) => new Vector3(l[0], l[1], l[2]));

@@ -1,6 +1,6 @@
 ﻿namespace GSR.EnDecic
 {
-    public interface IMutatingDecoder<T>
+    public interface IApplicativeDecoder<T>
     {
         /// <summary>
         /// 
@@ -10,7 +10,7 @@
         /// <param name="stream"></param>
         /// <param name="instance"></param>
         /// <returns>The mutated instance.</returns>
-        public T Mutate<U>(IDecodingSet<U> codingSet, U stream, T instance);
+        public T Apply<U>(IDecodingSet<U> codingSet, U stream, T instance);
 
     } // end interface
 } // end namespace
