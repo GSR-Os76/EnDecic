@@ -12,7 +12,16 @@
     <Company>GSR</Company>
     <RootNamespace>GSR.EnDecic.Jsonic</RootNamespace>
     <RepositoryUrl>https://github.com/GSR-Os76/EnDecic/</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EnDecic\EnDecic.csproj" />
@@ -25,6 +34,13 @@
     <Reference Include="Utilic">
       <HintPath>..\Utilic.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
