@@ -38,6 +38,8 @@ namespace GSR.EnDecic.Implementations
         public static IEnDec<double> RangedDouble(double boundOne, double boundTwo) => new RangedDoubleEnDec(DOUBLE, boundOne, boundTwo);
         public static IEnDec<decimal> RangedDecimal(IEnDec<decimal> baseEnDec, decimal boundOne, decimal boundTwo) => new RangedDecimalEnDec(baseEnDec, boundOne, boundTwo);
         public static IEnDec<decimal> RangedDecimal(decimal boundOne, decimal boundTwo) => new RangedDecimalEnDec(DECIMAL, boundOne, boundTwo);
+        public static IEnDec<string> RangedString(IEnDec<string> baseEnDec, int boundOne, int boundTwo) => new RangedStringEnDec(baseEnDec, boundOne, boundTwo);
+        public static IEnDec<string> RangedString(int boundOne, int boundTwo) => new RangedStringEnDec(STRING, boundOne, boundTwo);
         public static IEnDec<IList<T>> FixedLengthList<T>(IEnDec<T> enDec, int length) => new FixedLengthListEnDec<T>(enDec, length);
         public static IEnDec<IDictionary<K, V>> FixedKeysMap<K, V>(IEnDec<K> keyEnDec, IEnDec<V> valueEnDec, K[] keys) => new FixedKeysMapEnDec<K, V>(keyEnDec, valueEnDec, keys);
         public static IEnDec<IDictionary<string, V>> FixedKeysStringKeyedMap<V>(IEnDec<V> valueEnDec, string[] keys) => new FixedKeysMapEnDec<string, V>(STRING, valueEnDec, keys);
@@ -46,6 +48,9 @@ namespace GSR.EnDecic.Implementations
         #endregion
 
         #region PolyTyped
+        public static IEnDec<Tuple<T1?, T2?>> ExternallyKeyedTuple<TKey, T1, T2>(IEnDec<TKey> keyEnDec, TKey key1, IEnDec<T1> t1EnDec, TKey key2, IEnDec<T2> t2EnDec) => new ExternallyKeyedTuple2EnDec<TKey, T1, T2>(keyEnDec, key1, t1EnDec, key2, t2EnDec);
+        public static IEnDec<Tuple<T1?, T2?>> ExternallyKeyedStringKeyedTuple<T1, T2>(string key1, IEnDec<T1> t1EnDec, string key2, IEnDec<T2> t2EnDec) => new ExternallyKeyedTuple2EnDec<string, T1, T2>(STRING, key1, t1EnDec, key2, t2EnDec);
+
         public static IEnDec<Tuple<T1?, T2?>> Tuple<T1, T2>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec) => new Tuple2EnDec<T1, T2>(t1EnDec, t2EnDec);
         public static IEnDec<Tuple<T1?, T2?, T3?>> Tuple<T1, T2, T3>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec) => new Tuple3EnDec<T1, T2, T3>(t1EnDec, t2EnDec, t3EnDec);
         public static IEnDec<Tuple<T1?, T2?, T3?, T4?>> Tuple<T1, T2, T3, T4>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec) => new Tuple4EnDec<T1, T2, T3, T4>(t1EnDec, t2EnDec, t3EnDec, t4EnDec);
@@ -53,8 +58,6 @@ namespace GSR.EnDecic.Implementations
         public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?, T6?>> Tuple<T1, T2, T3, T4, T5, T6>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec, IEnDec<T6> t6EnDec) => new Tuple6EnDec<T1, T2, T3, T4, T5, T6>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec, t6EnDec);
         public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?, T6?, T7?>> Tuple<T1, T2, T3, T4, T5, T6, T7>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec, IEnDec<T6> t6EnDec, IEnDec<T7> t7EnDec) => new Tuple7EnDec<T1, T2, T3, T4, T5, T6, T7>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec, t6EnDec, t7EnDec);
         #endregion
-
-
 
     } // end class
 } // end namespace

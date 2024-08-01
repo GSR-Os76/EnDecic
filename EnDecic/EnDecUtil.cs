@@ -13,10 +13,6 @@ namespace GSR.EnDecic
 
 
 
-#warning
-        // make ranged enDec take in a enDec, allowing constraint addition
-        // still add ranged lists and ranged strings.
-        // maybe fixed length strings too
         public static IEnDec<byte> Ranged(this IEnDec<byte> baseEnDec, byte boundOne, byte boundTwo) => EnDecs.RangedByte(baseEnDec, boundOne, boundTwo);
         public static IEnDec<short> Ranged(this IEnDec<short> baseEnDec, short boundOne, short boundTwo) => EnDecs.RangedInt16(baseEnDec, boundOne, boundTwo);
         public static IEnDec<int> Ranged(this IEnDec<int> baseEnDec, int boundOne, int boundTwo) => EnDecs.RangedInt32(baseEnDec, boundOne, boundTwo);
@@ -24,6 +20,7 @@ namespace GSR.EnDecic
         public static IEnDec<float> Ranged(this IEnDec<float> baseEnDec, float boundOne, float boundTwo) => EnDecs.RangedSingle(baseEnDec, boundOne, boundTwo);
         public static IEnDec<double> Ranged(this IEnDec<double> baseEnDec, double boundOne, double boundTwo) => EnDecs.RangedDouble(baseEnDec, boundOne, boundTwo);
         public static IEnDec<decimal> Ranged(this IEnDec<decimal> baseEnDec, decimal boundOne, decimal boundTwo) => EnDecs.RangedDecimal(baseEnDec, boundOne, boundTwo);
+        public static IEnDec<string> Ranged(this IEnDec<string> baseEnDec, int boundOne, int boundTwo) => EnDecs.RangedString(baseEnDec, boundOne, boundTwo);
         public static IEnDec<IList<T>> FixedLengthListOf<T>(this IEnDec<T> type, int fixedLength) => EnDecs.FixedLengthList(type, fixedLength);
         public static IEnDec<IDictionary<K, V>> FixedKeyMapOf<K, V>(this IEnDec<V> valueEnDec, IEnDec<K> keyEnDec, K[] fixedKeys) => EnDecs.FixedKeysMap(keyEnDec, valueEnDec, fixedKeys);
         public static IEnDec<IDictionary<string, T>> FixedKeyStringKeyedMapOf<T>(this IEnDec<T> valueEnDec, string[] fixedKeys) => EnDecs.FixedKeysStringKeyedMap(valueEnDec, fixedKeys);

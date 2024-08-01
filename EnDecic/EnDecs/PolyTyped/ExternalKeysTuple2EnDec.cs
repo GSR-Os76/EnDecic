@@ -3,7 +3,7 @@ using GSR.Utilic.Generic;
 
 namespace GSR.EnDecic.Implementations.PolyTyped
 {
-    public sealed class ExternalKeysTuple2EnDec<TKey, T1, T2> : IEnDec<Tuple<T1?, T2?>>
+    public sealed class ExternallyKeyedTuple2EnDec<TKey, T1, T2> : IEnDec<Tuple<T1?, T2?>>
     {
         private readonly IEnDec<IDictionary<TKey, object?>> _enDec;
         private readonly TKey _key1;
@@ -11,7 +11,7 @@ namespace GSR.EnDecic.Implementations.PolyTyped
 
 
 
-        public ExternalKeysTuple2EnDec(IEnDec<TKey> keyEnDec, TKey key1, IEnDec<T1> t1EnDec, TKey key2, IEnDec<T2> t2EnDec)
+        public ExternallyKeyedTuple2EnDec(IEnDec<TKey> keyEnDec, TKey key1, IEnDec<T1> t1EnDec, TKey key2, IEnDec<T2> t2EnDec)
         {
             _key1 = key1.IsNotNull();
             _key2 = key2.IsNotNull();
