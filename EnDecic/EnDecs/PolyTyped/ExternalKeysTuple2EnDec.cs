@@ -11,12 +11,14 @@ namespace GSR.EnDecic.Implementations.PolyTyped
 
 
 
-        public ExternallyKeyedTuple2EnDec(IEnDec<TKey> keyEnDec, TKey key1, IEnDec<T1> t1EnDec, TKey key2, IEnDec<T2> t2EnDec)
+        public ExternallyKeyedTuple2EnDec(IEnDec<TKey> keyEnDec,
+            TKey key1, IEnDec<T1> t1EnDec,
+            TKey key2, IEnDec<T2> t2EnDec)
         {
             _key1 = key1.IsNotNull();
             _key2 = key2.IsNotNull();
 
-            _enDec = new FixedKeysPolyTypedMapEnDec<TKey>(keyEnDec, new OrderedDictionary<TKey, IEnDec<object?>>(
+            _enDec = new FixedKeysPolyTypedMapEnDec<TKey>(keyEnDec, new ImmutableOrderedDictionary<TKey, IEnDec<object?>>(
                 KeyValuePair.Create(key1, t1EnDec.IsNotNull().NullableObjectEnDecOf()),
                 KeyValuePair.Create(key2, t2EnDec.IsNotNull().NullableObjectEnDecOf())));
         } // end constructor
@@ -31,8 +33,8 @@ namespace GSR.EnDecic.Implementations.PolyTyped
                 (T2?)data[_key2]);
         } // end Decode()
 
-        public U Encode<U>(IEncodingSet<U> codingSet, Tuple<T1?, T2?> data) => _enDec.Encode(codingSet, new OrderedDictionary<TKey, object?>(
-                KeyValuePair.Create(_key1, (object?)data.Item1),
+        public U Encode<U>(IEncodingSet<U> codingSet, Tuple<T1?, T2?> data) => _enDec.Encode(codingSet, new ImmutableOrderedDictionary<TKey, object?>(
+                KeyValuePair.Create(_key1, (object?)data.IsNotNull().Item1),
                 KeyValuePair.Create(_key2, (object?)data.Item2)));
 
     } // end class

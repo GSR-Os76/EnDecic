@@ -16,14 +16,14 @@ namespace GSR.Tests.EnDecic.Jsonic
         private const string B = "b";
 
         private static readonly FixedKeysPolyTypedMapEnDec<string> ENDEC_A = new(EnDecs.STRING, new ImmutableOrderedDictionary<string, IEnDec<object?>>(
-            KeyValuePair.Create(A, EnDecs.BOOLEAN.NullableObjectEnDecOf()), 
+            KeyValuePair.Create(A, EnDecs.BOOLEAN.NullableObjectEnDecOf()),
             KeyValuePair.Create(B, EnDecs.DOUBLE.ListOf().NullableObjectEnDecOf())));
 
 
 
         #region Test Decode
         [TestMethod]
-        [DataRow($"{{\"{A}\": false, \r\r \r\r\t  \"{B}\": [0, \r45.0e0, 2.113   ]}}", false, new double[] {0.0d, 45d, 2.113d })]
+        [DataRow($"{{\"{A}\": false, \r\r \r\r\t  \"{B}\": [0, \r45.0e0, 2.113   ]}}", false, new double[] { 0.0d, 45d, 2.113d })]
         [DataRow($"{{\"{B}\":[0,45.0e0,2.113],\"{A}\":false}}", false, new double[] { 0.0d, 45d, 2.113d })]
         public void TestDecode(string json, bool valueA, double[] valueB)
         {
@@ -57,7 +57,7 @@ namespace GSR.Tests.EnDecic.Jsonic
             ENDEC_A.Decode(JsonCodingSet.STRING_KEYED_MAP_ONLY_INSTANCE, JsonElement.ParseJson(json));
         } // end TestDecodeWrongLength()
         #endregion
-        
+
 
 
         #region Test Encode
@@ -88,11 +88,11 @@ namespace GSR.Tests.EnDecic.Jsonic
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        [DataRow("arneu", false, 
+        [DataRow("arneu", false,
             "i943ujivf=+_-", new double[] { 0.0d, 45d, 2.113d },
             "i943ujivf_-", 9876d)]
-        public void TestDecodeWrongLength1(string a, bool valueA, 
-            string b, double[] valueB, 
+        public void TestDecodeWrongLength1(string a, bool valueA,
+            string b, double[] valueB,
             string c, double valueC)
         {
             ENDEC_A.Encode(
