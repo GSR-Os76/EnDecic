@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Utilic</name>
+    </assembly>
+    <members>
+        <member name="T:GSR.Utilic.Generic.IOrderedDictionary`2">
+            <summary>
+            Dictionary which strictly preserves key insertion order.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:GSR.Utilic.Generic.IQueue`1.Enqueue(`0)">
+            <summary>
+            </summary>
+            <param name="item"></param>
+            <returns>*this* for chaining</returns>
+        </member>
+        <member name="M:GSR.Utilic.Generic.IQueue`1.Enqueue(`0[])">
+            <summary>
+            Enqueues a sequence of <paramref name="items"/>.
+            </summary>
+            <param name="items"></param>
+            <returns>*this* for chaining</returns>
+        </member>
+        <member name="M:GSR.Utilic.Generic.IQueue`1.Dequeue(System.Int32)">
+            <summary>
+            Dequeues the next <paramref name="count"/> values.
+            </summary>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

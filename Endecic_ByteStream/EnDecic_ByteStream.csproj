@@ -4,11 +4,25 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <AssemblyName>GSR.EnDecic.ByteStream</AssemblyName>
+    <PackageId>gsr_endecic_bytestream</PackageId>
+    <Title>GSR EnDecic ByteStream</Title>
+    <Version>1.0.0.0</Version>
+    <Authors>GSR</Authors>
+    <Company>GSR</Company>
+    <Product>EnDecic ByteStream</Product>
+    <RepositoryUrl>https://github.com/GSR-Os76/EnDecic/</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EnDecic\EnDecic.csproj" />
-    <ProjectReference Include="..\Utilic\Utilic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Utilic">
+      <HintPath>..\Utilic.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

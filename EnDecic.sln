@@ -5,11 +5,7 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic", "EnDecic\EnDecic.csproj", "{3303F112-4AD8-4AE1-A143-462B6C16EA4E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilic", "Utilic\Utilic.csproj", "{CC010B53-499B-481D-A229-4915B45BEAF9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_Jsonic", "EnDecic_Jsonic\EnDecic_Jsonic.csproj", "{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilicTests", "UtilicTests\UtilicTests.csproj", "{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_JsonicTests", "EnDecic_JsonicTests\EnDecic_JsonicTests.csproj", "{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}"
 EndProject
@@ -25,6 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_ByteStream", "Endec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnDecic_ByteStreamTests", "EnDecic_ByteStreamTests\EnDecic_ByteStreamTests.csproj", "{F84B2F02-6BC5-4AC9-B5EF-34B4EF22E9BC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilic", "Utilic", "{070C8C4B-B17A-4CAC-A1D6-77359D5D23EE}"
+	ProjectSection(SolutionItems) = preProject
+		..\Utilic\Utilic\bin\Debug\net6.0\Utilic.deps.json = ..\Utilic\Utilic\bin\Debug\net6.0\Utilic.deps.json
+		..\Utilic\Utilic\bin\Debug\net6.0\Utilic.dll = ..\Utilic\Utilic\bin\Debug\net6.0\Utilic.dll
+		..\Utilic\Utilic\bin\Debug\net6.0\Utilic.xml = ..\Utilic\Utilic\bin\Debug\net6.0\Utilic.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,18 +38,10 @@ Global
 		{3303F112-4AD8-4AE1-A143-462B6C16EA4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3303F112-4AD8-4AE1-A143-462B6C16EA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3303F112-4AD8-4AE1-A143-462B6C16EA4E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC010B53-499B-481D-A229-4915B45BEAF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC010B53-499B-481D-A229-4915B45BEAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC010B53-499B-481D-A229-4915B45BEAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC010B53-499B-481D-A229-4915B45BEAF9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C8279B3-6ACE-4AA9-8B64-3C6E112DA8F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FC9DDFD-699F-4DE2-9C6E-73BCD531F7C8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF37EFE2-1FA6-4F38-A165-DE182BDD1CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,6 +60,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{04C2B30A-0C41-4F72-9B9F-8E3846BEA7A9} = {244E2402-069E-4F44-8595-65CC67F16A2B}
+		{070C8C4B-B17A-4CAC-A1D6-77359D5D23EE} = {244E2402-069E-4F44-8595-65CC67F16A2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {548CEF22-FCDF-4F80-A320-965BC010C035}

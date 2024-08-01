@@ -4,10 +4,22 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>GSR.EnDecic</RootNamespace>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageId>gsr_endecic</PackageId>
+    <Title>GSR EnDecic</Title>
+    <Version>1.0.0.0</Version>
+    <Company>GSR</Company>
+    <Authors>GSR</Authors>
+    <Product>EnDecic</Product>
+    <PackageReadmeFile></PackageReadmeFile>
+    <RepositoryUrl>https://github.com/GSR-Os76/EnDecic/</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Utilic\Utilic.csproj" />
+    <Reference Include="Utilic">
+      <HintPath>..\Utilic.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

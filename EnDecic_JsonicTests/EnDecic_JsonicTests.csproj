@@ -23,6 +23,9 @@
     <Reference Include="Jsonic">
       <HintPath>..\Jsonic.dll</HintPath>
     </Reference>
+    <Reference Include="Utilic">
+      <HintPath>..\Utilic.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

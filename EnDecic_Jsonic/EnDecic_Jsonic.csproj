@@ -4,6 +4,14 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageId>gsr_endecic_jsonic</PackageId>
+    <Title>GSR EnDecic Jsonic</Title>
+    <Version>1.0.0.0</Version>
+    <Authors>GSR</Authors>
+    <Company>GSR</Company>
+    <RootNamespace>GSR.EnDecic.Jsonic</RootNamespace>
+    <RepositoryUrl>https://github.com/GSR-Os76/EnDecic/</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +21,9 @@
   <ItemGroup>
     <Reference Include="Jsonic">
       <HintPath>..\Jsonic.dll</HintPath>
+    </Reference>
+    <Reference Include="Utilic">
+      <HintPath>..\Utilic.dll</HintPath>
     </Reference>
   </ItemGroup>
 

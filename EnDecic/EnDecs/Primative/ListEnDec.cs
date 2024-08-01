@@ -11,7 +11,6 @@ namespace GSR.EnDecic.Implementations.Primatives
         /// 
         /// </summary>
         /// <param name="enDec"></param>
-        /// <param name="fixedLength">length of list, -1 if unbound</param>
         public ListEnDec(IEnDec<T> enDec)
         {
             _enDec = enDec.IsNotNull();

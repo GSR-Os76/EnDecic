@@ -33,7 +33,7 @@ namespace GSR.EnDecic
         public static IEnDec<T> Map<T, F>(this IEnDec<F> from, Func<T, F> encoder, Func<F, T> decoder) => new MappedEnDec<T, F>(from, encoder, decoder);
 
         public static IEnApDec<TTo> Applicativize<TFrom, TTo>(this IEnDec<TFrom> enDec, Func<TTo, TFrom> encoder, Func<TFrom, TTo, TTo> applicator) => new MappedEnApDec<TFrom, TTo>(enDec, encoder, applicator);
-        
+
 
 
         #region Niche
