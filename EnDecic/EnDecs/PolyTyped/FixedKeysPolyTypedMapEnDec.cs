@@ -4,7 +4,7 @@ using GSR.Utilic.Generic;
 namespace GSR.EnDecic.Implementations.PolyTyped
 {
     /// <summary>
-    /// Statefully encode and decodes elements by cycling throw the provider array of EnDecs, throwing an exception if decoding or encoding is attempted past the number of provided EnDecs.
+    /// Statefully encodes and decodes elements by cycling throw the provider array of EnDecs, throwing an exception if decoding or encoding is attempted past the number of provided EnDecs.
     /// </summary>
     public sealed class FixedKeysPolyTypedMapEnDec<TKey> : IEnDec<IDictionary<TKey, object?>>
     {

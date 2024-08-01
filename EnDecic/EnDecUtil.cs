@@ -13,6 +13,10 @@ namespace GSR.EnDecic
 
 
 
+#warning
+        // make ranged enDec take in a enDec, allowing constraint addition
+        // still add ranged lists and ranged strings.
+        // maybe fixed length strings too
         public static IEnDec<byte> Ranged(this IEnDec<byte> _, byte boundOne, byte boundTwo) => EnDecs.RangedByte(boundOne, boundTwo);
         public static IEnDec<short> Ranged(this IEnDec<short> _, short boundOne, short boundTwo) => EnDecs.RangedInt16(boundOne, boundTwo);
         public static IEnDec<int> Ranged(this IEnDec<int> _, int boundOne, int boundTwo) => EnDecs.RangedInt32(boundOne, boundTwo);

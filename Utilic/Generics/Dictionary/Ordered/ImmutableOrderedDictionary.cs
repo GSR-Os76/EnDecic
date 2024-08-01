@@ -31,6 +31,10 @@ namespace GSR.Utilic.Generic
 
 
 
+        public ImmutableOrderedDictionary() { } // end constructor
+
+        public ImmutableOrderedDictionary(params KeyValuePair<TKey, TValue>[] valuePairs) : this((IEnumerable<KeyValuePair<TKey, TValue>>)valuePairs) { }
+
         public ImmutableOrderedDictionary(IEnumerable<KeyValuePair<TKey, TValue>> entries)
         {
             if (entries.Select((x) => x.Key).AnyRepeats())
