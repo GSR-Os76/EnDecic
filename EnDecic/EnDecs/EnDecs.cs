@@ -24,13 +24,20 @@ namespace GSR.EnDecic.Implementations
         #endregion
 
         #region Restricted
-        public static IEnDec<byte> RangedByte(byte boundOne, byte boundTwo) => new RangedByteEnDec(boundOne, boundTwo);
-        public static IEnDec<short> RangedInt16(short boundOne, short boundTwo) => new RangedInt16EnDec(boundOne, boundTwo);
-        public static IEnDec<int> RangedInt32(int boundOne, int boundTwo) => new RangedInt32EnDec(boundOne, boundTwo);
-        public static IEnDec<long> RangedInt64(long boundOne, long boundTwo) => new RangedInt64EnDec(boundOne, boundTwo);
-        public static IEnDec<float> RangedSingle(float boundOne, float boundTwo) => new RangedSingleEnDec(boundOne, boundTwo);
-        public static IEnDec<double> RangedDouble(double boundOne, double boundTwo) => new RangedDoubleEnDec(boundOne, boundTwo);
-        public static IEnDec<decimal> RangedDecimal(decimal boundOne, decimal boundTwo) => new RangedDecimalEnDec(boundOne, boundTwo);
+        public static IEnDec<byte> RangedByte(IEnDec<byte> baseEnDec, byte boundOne, byte boundTwo) => new RangedByteEnDec(baseEnDec, boundOne, boundTwo);
+        public static IEnDec<byte> RangedByte(byte boundOne, byte boundTwo) => new RangedByteEnDec(BYTE, boundOne, boundTwo);
+        public static IEnDec<short> RangedInt16(IEnDec<short> baseEnDec, short boundOne, short boundTwo) => new RangedInt16EnDec(baseEnDec, boundOne, boundTwo);
+        public static IEnDec<short> RangedInt16(short boundOne, short boundTwo) => new RangedInt16EnDec(INT_16, boundOne, boundTwo);
+        public static IEnDec<int> RangedInt32(IEnDec<int> baseEnDec, int boundOne, int boundTwo) => new RangedInt32EnDec(baseEnDec, boundOne, boundTwo);
+        public static IEnDec<int> RangedInt32(int boundOne, int boundTwo) => new RangedInt32EnDec(INT_32, boundOne, boundTwo);
+        public static IEnDec<long> RangedInt64(IEnDec<long> baseEnDec, long boundOne, long boundTwo) => new RangedInt64EnDec(baseEnDec, boundOne, boundTwo);
+        public static IEnDec<long> RangedInt64(long boundOne, long boundTwo) => new RangedInt64EnDec(INT_64, boundOne, boundTwo);
+        public static IEnDec<float> RangedSingle(IEnDec<float> baseEnDec, float boundOne, float boundTwo) => new RangedSingleEnDec(baseEnDec, boundOne, boundTwo);
+        public static IEnDec<float> RangedSingle(float boundOne, float boundTwo) => new RangedSingleEnDec(SINGLE, boundOne, boundTwo);
+        public static IEnDec<double> RangedDouble(IEnDec<double> baseEnDec, double boundOne, double boundTwo) => new RangedDoubleEnDec(baseEnDec, boundOne, boundTwo);
+        public static IEnDec<double> RangedDouble(double boundOne, double boundTwo) => new RangedDoubleEnDec(DOUBLE, boundOne, boundTwo);
+        public static IEnDec<decimal> RangedDecimal(IEnDec<decimal> baseEnDec, decimal boundOne, decimal boundTwo) => new RangedDecimalEnDec(baseEnDec, boundOne, boundTwo);
+        public static IEnDec<decimal> RangedDecimal(decimal boundOne, decimal boundTwo) => new RangedDecimalEnDec(DECIMAL, boundOne, boundTwo);
         public static IEnDec<IList<T>> FixedLengthList<T>(IEnDec<T> enDec, int length) => new FixedLengthListEnDec<T>(enDec, length);
         public static IEnDec<IDictionary<K, V>> FixedKeysMap<K, V>(IEnDec<K> keyEnDec, IEnDec<V> valueEnDec, K[] keys) => new FixedKeysMapEnDec<K, V>(keyEnDec, valueEnDec, keys);
         public static IEnDec<IDictionary<string, V>> FixedKeysStringKeyedMap<V>(IEnDec<V> valueEnDec, string[] keys) => new FixedKeysMapEnDec<string, V>(STRING, valueEnDec, keys);
@@ -45,9 +52,6 @@ namespace GSR.EnDecic.Implementations
         public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?>> Tuple<T1, T2, T3, T4, T5>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec) => new Tuple5EnDec<T1, T2, T3, T4, T5>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec);
         public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?, T6?>> Tuple<T1, T2, T3, T4, T5, T6>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec, IEnDec<T6> t6EnDec) => new Tuple6EnDec<T1, T2, T3, T4, T5, T6>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec, t6EnDec);
         public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?, T6?, T7?>> Tuple<T1, T2, T3, T4, T5, T6, T7>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec, IEnDec<T6> t6EnDec, IEnDec<T7> t7EnDec) => new Tuple7EnDec<T1, T2, T3, T4, T5, T6, T7>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec, t6EnDec, t7EnDec);
-
-
-
         #endregion
 
 

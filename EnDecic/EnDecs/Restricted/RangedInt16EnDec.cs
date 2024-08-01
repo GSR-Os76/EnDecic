@@ -4,13 +4,15 @@ namespace GSR.EnDecic.Implementations.Restricted
 {
     public sealed class RangedInt16EnDec : IEnDec<short>
     {
+        private readonly IEnDec<short> _enDec;
         private readonly short _max;
         private readonly short _min;
 
 
 
-        public RangedInt16EnDec(short boundOne, short boundTwo)
+        public RangedInt16EnDec(IEnDec<short> enDec, short boundOne, short boundTwo)
         {
+            _enDec = enDec.IsNotNull();
             _max = Math.Max(boundOne, boundTwo);
             _min = Math.Min(boundOne, boundTwo);
         } // end constructor
@@ -19,7 +21,7 @@ namespace GSR.EnDecic.Implementations.Restricted
 
         public short Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
-            short data = codingSet.IsNotNull().DecodeInt16(stream.IsNotNull());
+            short data = _enDec.Decode(codingSet.IsNotNull(), stream.IsNotNull());
 
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a integer betweed {_max} and {_min}, but retrieved {data}.");
@@ -32,7 +34,7 @@ namespace GSR.EnDecic.Implementations.Restricted
             if (data < _min || data > _max)
                 throw new ArgumentOutOfRangeException($"Expected a integer betweed {_max} and {_min}, but got {data}.");
 
-            return codingSet.IsNotNull().EncodeInt16(data);
+            return _enDec.Encode(codingSet.IsNotNull(), data);
         } // end Encode()
 
     } // end class
