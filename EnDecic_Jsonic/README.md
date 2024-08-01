@@ -2,6 +2,12 @@
 
 A GSR Endecic ICodingSet implementation for converting any data to and from Json by levaraging GSR Jsonic.
 
+## Dependencies
+
+- GSR EnDecic 1.0.0.0 - 1.1.0.0
+- GSR Jsonic 2.2.1.0 - 2.3.0.0
+- GSR Utilic 1.0.0.0 - 1.1.0.0
+
 ## Versioning
 
 ### Scheme

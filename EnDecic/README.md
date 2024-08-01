@@ -2,6 +2,10 @@
 
 A system for encoding and decoding data.
 
+## Dependencies
+
+- GSR Utilic 1.0.0.0 - 1.1.0.0
+
 ## Versioning
 
 ### Scheme

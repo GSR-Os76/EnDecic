@@ -2,6 +2,11 @@
 
 A GSR Endecic ICodingSet implementation for converting data to and from a stream of bytes.
 
+## Dependencies
+
+- GSR EnDecic 1.0.0.0 - 1.1.0.0
+- GSR Utilic 1.0.0.0 - 1.1.0.0
+
 ## Versioning
 
 ### Scheme
