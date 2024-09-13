@@ -1,5 +1,7 @@
 ﻿namespace GSR.EnDecic
 {
+    // Use ISerializer system
+    [Obsolete]
     /// <summary>
     /// Contract for an object that can be serialized by <see cref="IEnApDec{T}"/>.
     /// </summary>
