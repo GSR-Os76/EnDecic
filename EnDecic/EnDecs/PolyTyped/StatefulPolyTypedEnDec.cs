@@ -6,6 +6,7 @@ namespace GSR.EnDecic.Implementations.PolyTyped
     /// <summary>
     /// Statefully encode and decodes elements by cycling throw the provider array of EnDecs, throwing an exception if decoding or encoding is attempted past the number of provided EnDecs.
     /// </summary>
+#warning type name inconsistent with expected/file names: fix in 1.1.0.0
     public sealed class StatefulPolyTypeEnDec : IEnDec<object?>
     {
         private readonly IEnDec<object?>[] _enDecs;
@@ -26,10 +27,11 @@ namespace GSR.EnDecic.Implementations.PolyTyped
 
 
 
+        /// <inheritdoc/>
         public object? Decode<U>(IDecodingSet<U> codingSet, U stream) => _enDecs[_decodeIndex++].Decode(codingSet.IsNotNull(), stream.IsNotNull());
-
+        
+        /// <inheritdoc/>
         public U Encode<U>(IEncodingSet<U> codingSet, object? data) => _enDecs[_encodeIndex++].Encode(codingSet.IsNotNull(), data);
-
 
 
 

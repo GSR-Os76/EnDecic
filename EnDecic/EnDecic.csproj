@@ -8,7 +8,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageId>gsr_endecic</PackageId>
     <Title>GSR EnDecic</Title>
-    <Version>1.0.1.0</Version>
+    <Version>1.0.2.0</Version>
     <Company>GSR</Company>
     <Authors>GSR</Authors>
     <Product>EnDecic</Product>
