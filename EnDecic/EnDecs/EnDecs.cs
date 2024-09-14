@@ -4,6 +4,9 @@ using GSR.EnDecic.Implementations.Restricted;
 
 namespace GSR.EnDecic.Implementations
 {
+    /// <summary>
+    /// Collection of reuseable <see cref="IEnDec{T}"/> instances, and creation methods.
+    /// </summary>
     public static class EnDecs
     {
         #region Primative
@@ -73,6 +76,8 @@ namespace GSR.EnDecic.Implementations
         public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?, T6?>> Tuple<T1, T2, T3, T4, T5, T6>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec, IEnDec<T6> t6EnDec) => new Tuple6EnDec<T1, T2, T3, T4, T5, T6>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec, t6EnDec);
         public static IEnDec<Tuple<T1?, T2?, T3?, T4?, T5?, T6?, T7?>> Tuple<T1, T2, T3, T4, T5, T6, T7>(IEnDec<T1> t1EnDec, IEnDec<T2> t2EnDec, IEnDec<T3> t3EnDec, IEnDec<T4> t4EnDec, IEnDec<T5> t5EnDec, IEnDec<T6> t6EnDec, IEnDec<T7> t7EnDec) => new Tuple7EnDec<T1, T2, T3, T4, T5, T6, T7>(t1EnDec, t2EnDec, t3EnDec, t4EnDec, t5EnDec, t6EnDec, t7EnDec);
         #endregion
-
+#warning ImpliedKeysPolyTypedMapEnDec for ease of reseting, possibly just method that returns mapped into the reset vs a concrete highly repetitive type
+#warning Maps with some optional keys
+#warning ENDEC for endec property interface
     } // end class
 } // end namespace
