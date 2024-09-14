@@ -4,7 +4,7 @@ using GSR.Utilic.Generic;
 namespace GSR.EnDecic.Implementations.PolyTyped
 {
     /// <summary>
-    /// Statefully encodes and decodes elements by cycling throw the provider array of EnDecs, throwing an exception if decoding or encoding is attempted past the number of provided EnDecs.
+    /// Statefully encodes and decodes elements by cycling throw the provider array of <see cref="IEnDec{T}"/>, throwing an exception if decoding or encoding is attempted past the number of provided EnDecs.
     /// </summary>
     public sealed class FixedKeysPolyTypedMapEnDec<TKey> : IEnDec<IDictionary<TKey, object?>>
     {
@@ -14,6 +14,7 @@ namespace GSR.EnDecic.Implementations.PolyTyped
 
 
 
+        /// <inheritdoc/>
         public FixedKeysPolyTypedMapEnDec(IEnDec<TKey> keyEnDec, IDictionary<TKey, IEnDec<object?>> enDecMap)
         {
             _keyEnDec = keyEnDec.IsNotNull();
@@ -27,6 +28,7 @@ namespace GSR.EnDecic.Implementations.PolyTyped
 
 
 
+        /// <inheritdoc/>
         public IDictionary<TKey, object?> Decode<U>(IDecodingSet<U> codingSet, U stream)
         {
             IDictionary<TKey, U> s1 = codingSet.DecodeMap(stream, _keyEnDec, new CastDecoder<U>());
@@ -36,12 +38,13 @@ namespace GSR.EnDecic.Implementations.PolyTyped
             return new ImmutableOrderedDictionary<TKey, object?>(s1.Select((x) => KeyValuePair.Create(x.Key, _enDecMap[x.Key].Decode(codingSet, x.Value))));
         } // end Decode()
 
+        /// <inheritdoc/>
         public U Encode<U>(IEncodingSet<U> codingSet, IDictionary<TKey, object?> data)
         {
             if ((data.IsNotNull().Keys.Count != _enDecMap.Count) || !data.Keys.All((x) => _enDecMap.Keys.Contains(x)))
                 throw new ArgumentException($"Can't write dictionary with keys not matching: {_enDecMap.Keys}.");
 
-            return codingSet.EncodeMap(new OrderedDictionary<TKey, object?>(_enDecMap.Select((x) => KeyValuePair.Create(x.Key, data[x.Key]))), _keyEnDec, _valueEnDec.ResetEncoding());
+            return codingSet.EncodeMap(new ImmutableOrderedDictionary<TKey, object?>(_enDecMap.Select((x) => KeyValuePair.Create(x.Key, data[x.Key]))), _keyEnDec, _valueEnDec.ResetEncoding());
         } // end Encode()
 
     } // end class

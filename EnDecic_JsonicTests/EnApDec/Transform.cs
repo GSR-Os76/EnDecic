@@ -19,5 +19,22 @@ namespace GSR.Tests.EnDecic.Jsonic
 
 
         public Vector3 Position { get; set; } = Vector3.Zero;
+
+
+
+        public Transform() { } // end constructor
+
+        public Transform(Vector3 position)
+        {
+            Position = position;
+        } // end constructor
+
+
+
+
+        public override bool Equals(object? obj) => 
+            obj is Transform t 
+            && t.Position == Position;
+
     } // end class
 } // end namespace

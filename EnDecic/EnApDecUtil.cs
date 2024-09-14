@@ -14,7 +14,7 @@ namespace GSR.EnDecic
         /// <param name="enApDec"></param>
         /// <param name="applicantSupplier"></param>
         /// <returns></returns>
-        public static IEnDec<T> AsEnDec<T>(IEnApDec<T> enApDec, Func<T> applicantSupplier) => new UnApplicativizedEnDec<T>(enApDec, applicantSupplier);
+        public static IEnDec<T> AsEnDec<T>(this IEnApDec<T> enApDec, Func<T> applicantSupplier) => new UnApplicativizedEnDec<T>(enApDec, applicantSupplier);
 
     } // end class
 } // end namespace

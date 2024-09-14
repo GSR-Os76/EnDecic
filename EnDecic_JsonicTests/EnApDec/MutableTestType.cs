@@ -2,7 +2,7 @@
 
 namespace GSR.Tests.EnDecic.EnApDec
 {
-    internal class TestMutableType
+    internal class MutableTestType
     {
         public int I { get; set; }
 
@@ -10,10 +10,10 @@ namespace GSR.Tests.EnDecic.EnApDec
 
 
 
-        public TestMutableType(int i, Transform transform)
+        public MutableTestType(int i, Transform transform)
         {
             I = i;
             Transform = transform;
-        }
+        } // end constructor
     } // end class
 } // end namespace

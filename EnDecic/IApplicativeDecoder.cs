@@ -1,5 +1,6 @@
 ﻿namespace GSR.EnDecic
 {
+#warning should T be notnull constrained? can't mutate null, though that's limiting valid uses for nothing
     public interface IApplicativeDecoder<T>
     {
         /// <summary>
